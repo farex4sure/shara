@@ -26,7 +26,7 @@ export const useLogin = () => {
       setLoading(false)
     }
 
-    axios.post('https://shara-api.onrender.com/user/login', user)
+    axios.post(`${process.env.BASE_API_URL}/user/login`, user)
       .then(res => res.data)
       .then(data => {
         console.log(data.message)
@@ -60,7 +60,7 @@ export const useLogin = () => {
       setLoading(false)
     }
 
-    axios.post('https://shara-api.onrender.com/user/forget-password', user)
+    axios.post(`${process.env.BASE_API_URL}}/user/forget-password`, user)
       .then(res => res.data)
       .then(data => {
         setSuccess(data.message)
@@ -78,31 +78,34 @@ export const useLogin = () => {
     setError(null)
     setSuccess(null)
     const { id, token } = user
-    axios.get(`https://shara-api.onrender.com/user/reset-password/${id}/${token}`, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(res => res.data)
-      .then(data => {
-        setSuccess(data.message)
-        setTimeout(() => {
-          setSuccess(null)
-        }, 1000)
-        setLoading(false)
-      }).catch(error => {
-        if (error.status || error.response.status === 401) {
-          setError("Invalid link, or Expired link")
-          setTimeout(() => {
-            navigate("/forgetPassword")
-          }, 1000)
-        } else {
-          setError("network error: " + error)
-          setTimeout(() => {
-            navigate("/login")
-          }, 1000)
-        }
-        setLoading(false)
-      })
+    axios
+			.get(`${process.env.BASE_API_URL}}/user/reset-password/${id}/${token}`, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+			.then((res) => res.data)
+			.then((data) => {
+				setSuccess(data.message);
+				setTimeout(() => {
+					setSuccess(null);
+				}, 1000);
+				setLoading(false);
+			})
+			.catch((error) => {
+				if (error.status || error.response.status === 401) {
+					setError('Invalid link, or Expired link');
+					setTimeout(() => {
+						navigate('/forgetPassword');
+					}, 1000);
+				} else {
+					setError('network error: ' + error);
+					setTimeout(() => {
+						navigate('/login');
+					}, 1000);
+				}
+				setLoading(false);
+			});
   }
   const changePassword = async (user) => {
     setLoading(true)
@@ -114,7 +117,7 @@ export const useLogin = () => {
       setLoading(false)
     }
 
-    axios.post('https://shara-api.onrender.com/user/change-password', user)
+    axios.post(`${process.env.BASE_API_URL}/user/change-password`, user)
       .then(res => res.data)
       .then(data => {
         setSuccess(data.message)
