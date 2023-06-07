@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aos": "^2.3.4",
     "axios": "^1.2.1",
+    "dotenv": "^16.1.4",
     "http-proxy-middleware": "^2.0.6",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",

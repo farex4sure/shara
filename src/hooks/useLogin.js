@@ -1,85 +1,94 @@
-import { useState, useContext } from 'react'
-import { useAuthContext } from './useAuthContext'
-import { useLocation, useNavigate } from "react-router-dom";
-import { LoadingContext } from '../context/LoadingContext'
-import axios from "axios";
-
+import { useState, useContext } from 'react';
+import { useAuthContext } from './useAuthContext';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { LoadingContext } from '../context/LoadingContext';
+import axios from 'axios';
+const BASE_API_URL = 'https://shara-api-vzrf.onrender.com';
 export const useLogin = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { loading, setLoading } = useContext(LoadingContext)
+	const navigate = useNavigate();
+	const location = useLocation();
+	const { loading, setLoading } = useContext(LoadingContext);
+	const [error, setError] = useState(null);
+	const [success, setSuccess] = useState(null);
+	const [phone, setPhone] = useState(null);
+	const { dispatch } = useAuthContext();
+	const redirectPath = location.state?.path || '/dashboard';
 
+	const login = async (user) => {
+		setLoading(true);
+		setError(null);
+		setPhone(null);
 
-  const [error, setError] = useState(null)
-  const [success, setSuccess] = useState(null)
-  const [phone, setPhone] = useState(null)
-  const { dispatch } = useAuthContext()
-  const redirectPath = location.state?.path || "/dashboard"
+		if (user.phone === '' || user.password === '') {
+			setError('All inputs are required.');
+			setLoading(false);
+		}
 
-  const login = async (user) => {
-    setLoading(true)
-    setError(null)
-    setPhone(null)
+		axios
+			.post(`${BASE_API_URL}/user/login`, user)
+			.then((res) => res.data)
+			.then((data) => {
+				console.log(data.message);
+				navigate(redirectPath, { replace: true });
 
-    if (user.phone === "" || user.password === "") {
-      setError("All inputs are required.")
-      setLoading(false)
-    }
+				setLoading(false); // save the user to local storage
+				// // // localStorage.setItem('sharauser', JSON.stringify(data.user))
+				console.log(data.message);
+				localStorage.setItem(
+					'sharauser',
+					JSON.stringify({
+						user: data.user,
+						token: data.token,
+						wallet: data.wallet,
+						transaction: data.transaction,
+					})
+				);
 
-    axios.post(`${process.env.BASE_API_URL}/user/login`, user)
-      .then(res => res.data)
-      .then(data => {
-        console.log(data.message)
-        navigate(redirectPath, { replace: true })
+				// update the auth context
+				console.log(data);
+				dispatch({ type: 'LOGIN', payload: data.user });
 
-        setLoading(false) // save the user to local storage
-        // // // localStorage.setItem('sharauser', JSON.stringify(data.user))
-        console.log(data.message)
-        localStorage.setItem('sharauser', JSON.stringify({ user: data.user, token: data.token, wallet: data.wallet, transaction: data.transaction }))
+				// update loading state
+				setLoading(false);
+			})
+			.catch((error) => {
+				setError(error ? error.response?.data.error || error.message : error);
+				setLoading(false);
+			});
+	};
 
-        // update the auth context
-        console.log(data)
-        dispatch({ type: 'LOGIN', payload: data.user })
+	const forgetPassword = async (user) => {
+		setLoading(true);
+		setError(null);
+		setSuccess(null);
 
-        // update loading state
-        setLoading(false)
-      }).catch(error => {
-        setError(error ? error.response?.data.error || error.message : error)
-        setLoading(false)
-      })
-  }
+		if (user.email === '') {
+			setError('Email is required.');
+			setLoading(false);
+		}
 
-
-  const forgetPassword = async (user) => {
-    setLoading(true)
-    setError(null)
-    setSuccess(null)
-
-    if (user.email === "") {
-      setError("Email is required.")
-      setLoading(false)
-    }
-
-    axios.post(`${process.env.BASE_API_URL}}/user/forget-password`, user)
-      .then(res => res.data)
-      .then(data => {
-        setSuccess(data.message)
-        setTimeout(() => {
-          navigate("/login")
-        }, 5000)
-        setLoading(false) // save the user to local storage
-      }).catch(error => {
-        setError(error ? error.response?.data.error || error.message : error)
-        setLoading(false)
-      })
-  }
-  const resetPassword = async (user) => {
-    setLoading(true)
-    setError(null)
-    setSuccess(null)
-    const { id, token } = user
-    axios
-			.get(`${process.env.BASE_API_URL}}/user/reset-password/${id}/${token}`, {
+		axios
+			.post(`${BASE_API_URL}}/user/forget-password`, user)
+			.then((res) => res.data)
+			.then((data) => {
+				setSuccess(data.message);
+				setTimeout(() => {
+					navigate('/login');
+				}, 5000);
+				setLoading(false); // save the user to local storage
+			})
+			.catch((error) => {
+				setError(error ? error.response?.data.error || error.message : error);
+				setLoading(false);
+			});
+	};
+	const resetPassword = async (user) => {
+		setLoading(true);
+		setError(null);
+		setSuccess(null);
+		const { id, token } = user;
+		axios
+			.get(`${BASE_API_URL}}/user/reset-password/${id}/${token}`, {
 				headers: {
 					'Content-Type': 'application/json',
 				},
@@ -106,31 +115,42 @@ export const useLogin = () => {
 				}
 				setLoading(false);
 			});
-  }
-  const changePassword = async (user) => {
-    setLoading(true)
-    setError(null)
-    setSuccess(null)
+	};
+	const changePassword = async (user) => {
+		setLoading(true);
+		setError(null);
+		setSuccess(null);
 
-    if (user.confirmPassword === "" || user.password === "") {
-      setError("All inputs are required.")
-      setLoading(false)
-    }
+		if (user.confirmPassword === '' || user.password === '') {
+			setError('All inputs are required.');
+			setLoading(false);
+		}
 
-    axios.post(`${process.env.BASE_API_URL}/user/change-password`, user)
-      .then(res => res.data)
-      .then(data => {
-        setSuccess(data.message)
-        setLoading(false)
-        setError(false)
-        setTimeout(() => {
-          setPhone(data.user.phone)
-        }, 1000)
-      }).catch(error => {
-        setError(error ? error.response?.data.error || error.message : error)
-        setLoading(false)
-      })
-  }
+		axios
+			.post(`${BASE_API_URL}/user/change-password`, user)
+			.then((res) => res.data)
+			.then((data) => {
+				setSuccess(data.message);
+				setLoading(false);
+				setError(false);
+				setTimeout(() => {
+					setPhone(data.user.phone);
+				}, 1000);
+			})
+			.catch((error) => {
+				setError(error ? error.response?.data.error || error.message : error);
+				setLoading(false);
+			});
+	};
 
-  return { login, forgetPassword, resetPassword, changePassword, loading, success, error, phone }
-}
+	return {
+		login,
+		forgetPassword,
+		resetPassword,
+		changePassword,
+		loading,
+		success,
+		error,
+		phone,
+	};
+};

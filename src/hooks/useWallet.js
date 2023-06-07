@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { LoadingContext } from '../context/LoadingContext';
 import axios from 'axios';
+const BASE_API_URL = 'https://shara-api-vzrf.onrender.com';
 
 export const useWallet = () => {
 	// const navigate = useNavigate()
@@ -23,7 +24,7 @@ export const useWallet = () => {
 			setLoading(false);
 		}
 		axios
-			.post(`${process.env.BASE_API_URL}/wallet`, phone)
+			.post(`${BASE_API_URL}/wallet`, phone)
 			.then((res) => res.data)
 			.then((data) => {
 				setSuccess(data?.user?.name);
@@ -50,7 +51,7 @@ export const useWallet = () => {
 			setLoading(false);
 		}
 		axios
-			.post(`${process.env.BASE_API_URL}/wallet/check-wallet`, phone)
+			.post(`${BASE_API_URL}/wallet/check-wallet`, phone)
 			.then((res) => res.data)
 			.then((data) => {
 				setSuccess(data?.user?.name);
@@ -68,7 +69,7 @@ export const useWallet = () => {
 		setLoading(true);
 		setError(false);
 		axios
-			.post(`${process.env.BASE_API_URL}/wallet/send`, data)
+			.post(`${BASE_API_URL}/wallet/send`, data)
 			.then((res) => res.data)
 			.then((data) => {
 				console.log(data);
@@ -91,7 +92,7 @@ export const useWallet = () => {
 		// let data = {amount : 103000, pin, phone : "7997r65656345", id, token}
 		console.log(data);
 		axios
-			.post(`${process.env.BASE_API_URL}/wallet/send`, data)
+			.post(`${BASE_API_URL}/wallet/send`, data)
 			.then((res) => res.data)
 			.then((data) => {
 				console.log(data);
@@ -110,7 +111,7 @@ export const useWallet = () => {
 		setLoading(true);
 		setError(false);
 		axios
-			.post(`${process.env.BASE_API_URL}/wallet/create-pin`, data)
+			.post(`${BASE_API_URL}/wallet/create-pin`, data)
 			.then((res) => res.data)
 			.then((data) => {
 				console.log(data);
@@ -138,7 +139,7 @@ export const useWallet = () => {
 		setError(false);
 		setLoading(true);
 		axios
-			.post(`${process.env.BASE_API_URL}/wallet/send-otp`, data)
+			.post(`${BASE_API_URL}/wallet/send-otp`, data)
 			.then((res) => res.data)
 			.then((data) => {
 				console.log(data);
@@ -167,7 +168,7 @@ export const useWallet = () => {
 		setLoading(true);
 		setError(false);
 		axios
-			.post(`${process.env.BASE_API_URL}/wallet/change-pin`, data)
+			.post(`${BASE_API_URL}/wallet/change-pin`, data)
 			.then((res) => res.data)
 			.then((data) => {
 				console.log(data);
@@ -189,7 +190,7 @@ export const useWallet = () => {
 		// let data = {token, pin : transferPin, id}
 		console.log(data);
 		axios
-			.post(`${process.env.BASE_API_URL}/wallet/verify-otp`, data)
+			.post(`${BASE_API_URL}/wallet/verify-otp`, data)
 			.then((res) => res.data)
 			.then((data) => {
 				console.log(data);
