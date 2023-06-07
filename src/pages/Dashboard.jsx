@@ -5,11 +5,15 @@ import { useWallet } from '../hooks/useWallet';
 // import RecycleBin from '../assets/pngwing.com (76).png';
 // import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import Bot from '../components/Bot';
-
-import { FiCalendar, FiCloud } from 'react-icons/fi';
+// import Bot from '../components/Bot';
+// FiCalendar, FiCloud;
+import { FiBell } from 'react-icons/fi';
+import { BsChatTextFill } from 'react-icons/bs';
+import { FaWallet, FaMapMarked } from 'react-icons/fa';
+import YouTubeVideo from './YouTubeVideo';
 
 const Dashboard = () => {
+	const videoId = 'Qyu-fZ8BOnI';
 	const { user } = useContext(AuthContext);
 	const { wallet, loading, error } = useWallet();
 	const phone = user.user?.phone;
@@ -24,119 +28,65 @@ const Dashboard = () => {
 		return <p className="text-5xl text-center text-red-600">Error</p>;
 	}
 	return (
-		<div>
-			<Bot />
-			<div className="h-36 bg-transparent rounded-b-[30%] px-7">
-				{/* <Splide className="mt-16 p-3" aria-label="myimges">
-					<SplideSlide>
-						<img src={RecycleBin} alt="Img1" />
-					</SplideSlide>
-					<SplideSlide>
-						<img src={RecycleBin} alt="Img2" />
-					</SplideSlide>
-				</Splide> */}
-				<p>
-					{' '}
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, in
-					neque quasi culpa adipisci repudiandae.
-				</p>
-			</div>
-			<div className="mt-10 md:mx-32 mx-5 py-5">
-				<div className="grid grid-cols-2 gap-x-4 gap-y-6">
-					<a href="./location">
-						<div className="bg-[#228e01] rounded-lg text-white p-2 space-y-3 shadow-lg">
-							<div className="">
-								<svg
-									width="50"
-									height="55"
-									fill="white"
-									viewBox="0 0 20 20"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										fillRule="evenodd"
-										d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
-										clipRule="evenodd"
-									></path>
-								</svg>
-							</div>
-							<p className="font-bold text-lg leading-tight">Sell Waste</p>
-						</div>
-					</a>
-
-					<a href="./calculate">
-						<div className="bg-white rounded-lg text-[#228e01] hover:bg-green-200 p-2 space-y-3 shadow-lg">
-							<div className="">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="50"
-									height="55"
-									fill="#228e01"
-									className="bi bi-calculator"
-									viewBox="0 0 16 16"
-								>
-									<path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
-									<path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z" />
-								</svg>
-							</div>
-							<p className="font-bold text-lg leading-tight">
-								Waste Calculator
-							</p>
-						</div>
-					</a>
-					<a href="./profile">
-						<div className="bg-white rounded-lg text-[#228e01] hover:bg-green-200 p-4 space-y-2 shadow-lg">
-							<div className="">
-								<svg
-									width="50"
-									height="55"
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 576 512"
-								>
-									<path
-										d="M512 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h448c35.35 0 64-28.65 64-64V96C576 60.65 547.3 32 512 32zM176 128c35.35 0 64 28.65 64 64s-28.65 64-64 64s-64-28.65-64-64S140.7 128 176 128zM272 384h-192C71.16 384 64 376.8 64 368C64 323.8 99.82 288 144 288h64c44.18 0 80 35.82 80 80C288 376.8 280.8 384 272 384zM496 320h-128C359.2 320 352 312.8 352 304S359.2 288 368 288h128C504.8 288 512 295.2 512 304S504.8 320 496 320zM496 256h-128C359.2 256 352 248.8 352 240S359.2 224 368 224h128C504.8 224 512 231.2 512 240S504.8 256 496 256zM496 192h-128C359.2 192 352 184.8 352 176S359.2 160 368 160h128C504.8 160 512 167.2 512 176S504.8 192 496 192z"
-										fill="#228e01"
-									/>
-								</svg>
-							</div>
-							<p className="font-bold text-lg leading-tight">My profile</p>
-						</div>
-					</a>
-					<a href="./wallet">
-						<div className="bg-white rounded-lg text-[#228e01] hover:bg-green-200  p-4 space-y-2 shadow-lg">
-							<div className="">
-								<svg
-									width="50"
-									height="55"
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 512 512"
-								>
-									<path
-										d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H80c-8.8 0-16-7.2-16-16s7.2-16 16-16H448c17.7 0 32-14.3 32-32s-14.3-32-32-32H64zM416 336c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z"
-										fill="#228e01"
-									/>
-								</svg>
-							</div>
-							<p className="font-bold text-lg leading-tight">Wallet</p>
-						</div>
-					</a>
-					<a href="./calendar">
-						<div className="bg-white rounded-lg text-[#228e01] hover:bg-green-200  p-4 space-y-2 shadow-lg">
-							<div className="">
-								<FiCalendar className="w-14 h-14" color="#228e01" />
-							</div>
-							<p className="font-bold text-lg leading-tight">Calender</p>
-						</div>
-					</a>
-					<a href="./climate">
-						<div className="bg-white rounded-lg text-[#228e01] hover:bg-green-200  p-4 space-y-2 shadow-lg">
-							<div className="">
-								<FiCloud className="w-14 h-14" color="#228e01" />
-							</div>
-							<p className="font-bold text-lg leading-tight">Climate Update</p>
-						</div>
-					</a>
+		<div className="relative h-full">
+			<div className=" md:mx-32 mx-5 py-5 ">
+				<div className="text-lg mt-12 my-2 flex">
+					<div className="flex-1">
+						<h1 className="text-2xl font-semibold">Welcome Salma!</h1>
+						<p className="mt-1 text-sm">Let take action together. 👋</p>
+					</div>
+					<div className="">
+						<p className="text-2xl font-semibold">Today's</p>
+						<p>37</p>
+					</div>
 				</div>
+				<div>
+					<YouTubeVideo videoId={videoId} />
+				</div>
+				<div className="rounded-lg text-white p-2 space-y-3 shadow-lg">
+					<h2 className="text-2xl font-extrabold p-2 text-green-500">
+						Wallet:
+						<span className="text-xl mx-3 font-semibold my-2">
+							&#8358; {`18,420.81`}
+						</span>
+					</h2>
+				</div>
+				<div className="text-lg my-2">
+					<h2 className="text-2xl font-extrabold">Notifications</h2>
+					<div className="marquee-container bg-gray-200 overflow-hidden">
+						<div className="marquee inline-block whitespace-nowrap animation-marquee">
+							<span className="text-green-500 text-xl font-semibold">
+								A Clean, Healthy and Wealthy City for All, Remember to recycle,
+								reuse and reduce waste in your community.
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="flex justify-between shadow absolute bottom-0 w-full p-2">
+				<a href="./location">
+					<div className="p-1">
+						<FaMapMarked className="w-8 h-8 md:w-14 md:h-14" color="#228e01" />
+					</div>
+				</a>
+				<a href="./wallet">
+					<div className="p-1">
+						<FaWallet className="w-8 h-8 md:w-14 md:h-14" color="#228e01" />
+					</div>
+				</a>
+				<a href="./chat">
+					<div className="p-1">
+						<BsChatTextFill
+							className="w-8 h-8 md:w-14 md:h-14"
+							color="#228e01"
+						/>
+					</div>
+				</a>
+				<a href="./wallet">
+					<div className="p-1">
+						<FiBell className="w-8 h-8 md:w-14 md:h-14" color="#228e01" />
+					</div>
+				</a>
 			</div>
 		</div>
 	);
