@@ -28,24 +28,21 @@ const Dashboard = () => {
 		return <p className="text-5xl text-center text-red-600">Error</p>;
 	}
 	return (
-		<div className="relative h-full">
+		<div className="relative h-full overflow-y-auto">
 			<div className=" md:mx-32 py-5">
-				<div className="text-lg mt-12 my-2 flex px-2">
-					<div className="flex-1">
-						<h1 className="text-2xl font-semibold">Welcome Salma!</h1>
-						<p className="mt-1 text-sm">Let take action together. 👋</p>
+				<div className="mt-1 mt-13 rounded-lg p-2 space-y-3 shadow-lg">
+					<div className="text-lg mt-13 my-2 flex px-2">
+						<div className="flex-1">
+							<h1 className="text-2xl font-semibold">Welcome Salma!</h1>
+							<p className="mt-1 text-sm">Let take action together. 👋</p>
+						</div>
+						<div className="">
+							<p className="text-lg font-semibold">Today's</p>
+							<p className="text-2xl font-semibold">
+								25<sup>&deg;C</sup>
+							</p>
+						</div>
 					</div>
-					<div className="">
-						<p className="text-lg font-semibold">Today's</p>
-						<p className="text-2xl font-semibold">
-							25<sup>&deg;C</sup>
-						</p>
-					</div>
-				</div>
-				<div className="h-[300px]">
-					<YouTubeVideo videoId={videoId} />
-				</div>
-				<div className="mt-1 rounded-lg text-white p-2 space-y-3 shadow-lg">
 					<h2 className="text-2xl font-extrabold p-2 text-green-500">
 						Wallet:
 						<span className="text-xl mx-3 font-semibold my-2">
@@ -53,7 +50,10 @@ const Dashboard = () => {
 						</span>
 					</h2>
 				</div>
-				<div className="text-lg my-2 divide-y">
+				<div className="h-[300px]">
+					<YouTubeVideo videoId={videoId} />
+				</div>
+				<div className="text-lg my-2 space-y-2 px-1">
 					<h2 className="text-2xl font-extrabold my-2">Notifications</h2>
 					<div className="rounded-lg px-4 py-3 bg-gray-50">
 						<p className="font-semibold text-xl text-green-500">Credit</p>
@@ -70,6 +70,11 @@ const Dashboard = () => {
 
 					<div className="rounded-lg px-4 py-3 bg-gray-50">
 						<p className="font-semibold text-xl text-green-500">Alert</p>
+						<p className="font-semibold text-xl text-green-500">
+							Check your progress on shara
+						</p>
+					</div>
+					<div className="rounded-lg px-4 py-1 bg-gray-50 invisible">
 						<p className="font-semibold text-xl text-green-500">
 							Check your progress on shara
 						</p>
@@ -95,7 +100,7 @@ const Dashboard = () => {
 						/>
 					</div>
 				</a>
-				<a href="./wallet">
+				<a href="./notifications">
 					<div className="p-1">
 						<FiBell className="w-8 h-8 md:w-14 md:h-14" color="#228e01" />
 					</div>

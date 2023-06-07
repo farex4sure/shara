@@ -24,6 +24,7 @@ import Location from './pages/Location';
 import Layout from './Layout';
 import About from './pages/About';
 import Pay from './pages/wallet/Pay';
+import Notifications from './pages/Notifications';
 
 function App() {
 	const { user } = useContext(AuthContext);
@@ -42,6 +43,7 @@ function App() {
 						<Route path="/calendar" element={<Calendar />} />
 						<Route path="/pay/:amount" element={<Pay />} />
 						<Route path="/location" element={<Location />} />
+						<Route path="/notifications" element={<Notifications />} />
 					</Route>
 					<Route
 						path="/"
