@@ -3,6 +3,8 @@ import Logo from '../assets/logo.png';
 // import signinImage from "../assets/Simage.png";
 import { Link, useNavigate } from 'react-router-dom';
 import { useLogin } from '../hooks/useLogin';
+import { addCode } from '../hooks/contryCodes';
+// ;
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -13,7 +15,7 @@ const Login = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const user = { phone, password };
+		const user = { phone: addCode(phone), password };
 		login(user);
 	};
 
@@ -36,7 +38,7 @@ const Login = () => {
 		<section className="font-serif min-h-screen bg-green-50 flex place-items-center">
 			<div className="p-5 py-8 w-full md:flex place-content-center">
 				<div className="hidden w-full">
-				{/* <div className="hidden md:flex  items-center justify-center space-x-5 w-full"> */}
+					{/* <div className="hidden md:flex  items-center justify-center space-x-5 w-full"> */}
 					<button
 						className={`font-semibold text-3xl rounded-full p-3 shadow-xl bg-gray-100 justify-center flex flex-col  ${
 							showSignUp

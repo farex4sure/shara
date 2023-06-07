@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSignup } from '../hooks/useSignup';
 // import axios from "axios";
 
+import { addCode } from '../hooks/contryCodes';
 const Signup = () => {
 	const navigate = useNavigate();
 	const { signup, error, isLoading } = useSignup();
@@ -19,7 +20,7 @@ const Signup = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const user = { name, phone, password };
+		const user = { name, phone: addCode(phone), password };
 		await signup(user);
 	};
 

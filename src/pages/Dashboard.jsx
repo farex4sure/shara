@@ -17,6 +17,7 @@ const Dashboard = () => {
 	const { user } = useContext(AuthContext);
 	const { wallet, loading, error } = useWallet();
 	const phone = user.user?.phone;
+	const name = user.user?.name;
 	useEffect(() => {
 		wallet({ phone });
 	}, [phone, wallet]);
@@ -33,7 +34,12 @@ const Dashboard = () => {
 				<div className="mt-1 mt-5 mb-2 devide-y rounded-lg p-2 space-y-3 shadow-inset shadow-outset shadow-xl">
 					<div className="text-lg my-2 flex px-2">
 						<div className="flex-1">
-							<h1 className="text-2xl font-semibold">Welcome Salma!</h1>
+							<h1 className="text-2xl font-semibold">
+								Welcome{' '}
+								<span className="capitalize">
+									{name?.substring(0, 15) || 'abdulsalam'}!
+								</span>
+							</h1>
 							<p className="text-lg mt-1 text-sm">
 								Let take action together. 👋
 							</p>
@@ -48,7 +54,7 @@ const Dashboard = () => {
 					<h2 className="text-2xl font-extrabold p-2 text-green-500">
 						Wallet:
 						<span className="text-xl mx-3 font-semibold my-2">
-							&#8358; {`18,420.81`}
+							&#8358;{user.wallet?.balance}
 						</span>
 					</h2>
 				</div>
@@ -99,7 +105,7 @@ const Dashboard = () => {
 				>
 					<FaWallet className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
 					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
-						Wallet
+						Reward
 					</p>
 				</a>
 				<a
