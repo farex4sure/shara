@@ -29,12 +29,14 @@ const Dashboard = () => {
 	}
 	return (
 		<div className="relative h-full overflow-y-auto">
-			<div className=" md:mx-32 py-5">
-				<div className="mt-1 mt-13 rounded-lg p-2 space-y-3 shadow-lg">
-					<div className="text-lg mt-13 my-2 flex px-2">
+			<div className="md:mx-32 py-5 mt-10">
+				<div className="mt-1 mt-5 mb-2 devide-y rounded-lg p-2 space-y-3 shadow-inset shadow-outset shadow-xl">
+					<div className="text-lg my-2 flex px-2">
 						<div className="flex-1">
 							<h1 className="text-2xl font-semibold">Welcome Salma!</h1>
-							<p className="mt-1 text-sm">Let take action together. 👋</p>
+							<p className="text-lg mt-1 text-sm">
+								Let take action together. 👋
+							</p>
 						</div>
 						<div className="">
 							<p className="text-lg font-semibold">Today's</p>
@@ -81,29 +83,42 @@ const Dashboard = () => {
 					</div>
 				</div>
 			</div>
-			<div className="flex justify-between shadow fixed bottom-0 w-full p-2 bg-gray-50 z-10">
-				<a href="./location">
-					<div className="p-1">
-						<FaMapMarked className="w-8 h-8 md:w-14 md:h-14" color="#228e01" />
-					</div>
+			<div className="grid grid-cols-4 shadow fixed bottom-0 w-full p-2 bg-gray-50 z-10">
+				<a
+					href="./location"
+					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
+				>
+					<FaMapMarked className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
+					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
+						sell waste
+					</p>
 				</a>
-				<a href="./wallet">
-					<div className="p-1">
-						<FaWallet className="w-8 h-8 md:w-14 md:h-14" color="#228e01" />
-					</div>
+				<a
+					href="./wallet"
+					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
+				>
+					<FaWallet className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
+					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
+						Wallet
+					</p>
 				</a>
-				<a href="./chat">
-					<div className="p-1">
-						<BsChatTextFill
-							className="w-8 h-8 md:w-14 md:h-14"
-							color="#228e01"
-						/>
-					</div>
+				<a
+					href="./chat"
+					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
+				>
+					<BsChatTextFill className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
+					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
+						Chats
+					</p>
 				</a>
-				<a href="./notifications">
-					<div className="p-1">
-						<FiBell className="w-8 h-8 md:w-14 md:h-14" color="#228e01" />
-					</div>
+				<a
+					href="./notifications"
+					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
+				>
+					<FiBell className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
+					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
+						Notifications
+					</p>
 				</a>
 			</div>
 		</div>

@@ -13,7 +13,7 @@ const Navbar = () => {
 	const { logout } = useLogout();
 	return (
 		<nav
-			className={`w-full left-0 top-0 z-[999] absolute bg-white shadow-lg text-white}`}
+			className={`w-full left-0 top-0 z-[999] absolute bg-white shadow-md text-white}`}
 		>
 			<div className="flex items-center justify-between">
 				<div className="mx-7">
