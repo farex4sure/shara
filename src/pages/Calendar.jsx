@@ -23,7 +23,7 @@ const Calendar = () => {
 	};
 	return (
 		<div className="p-1 mt-8 mx-2 py-10 h-screen relative">
-			<h3 className="text-center text-2xl font-semibold m-4">Calendar</h3>
+			<h3 className="text-center text-2xl font-semibold m-4">Waste Schedule</h3>
 			<div>
 				<FullCalendar
 					plugins={[dayGridPlugin, interactionPlugin]}

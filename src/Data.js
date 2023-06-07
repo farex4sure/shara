@@ -1,19 +1,44 @@
 export const menuLinks = [
 	{ name: 'Dashboard', link: './dashboard', icon: 'home' },
-	{ name: 'Progress', link: './progress', icon: 'trash-bin' },
-	{ name: 'schedule', link: './calendar', icon: 'calendar' },
+	{ name: 'Progress', link: './chat', icon: 'chat' },
+	{ name: 'Schedule', link: './calendar', icon: 'calendar' },
 	{ name: 'Wallet', link: './wallet', icon: 'wallet' },
 	{ name: 'Profile', link: './profile', icon: 'person' },
 	{ name: 'Setting', link: './#', icon: 'settings' },
 	{ name: 'About', link: './about', icon: 'information-circle' },
 ];
 export const newLinks = [
-	{ name: 'Home', link: './', icon: 'home' },
 	{ name: 'Log in', link: './', icon: 'log-out' },
 	{ name: 'Sign up', link: './signin', icon: 'person-add-outline' },
 	{ name: 'About', link: './about', icon: 'information-circle' },
 ];
 
+export const locations = [
+	{
+		id: 0,
+		tittle: 'kano',
+		latitude: 11.9630456,
+		longitude: 8.55034210353827,
+	},
+	{
+		id: 1,
+		tittle: 'NSR',
+		latitude: 12.0001383,
+		longitude: 8.5226245,
+	},
+	{
+		id: 2,
+		tittle: 'MIJ',
+		latitude: 12.17485215,
+		longitude: 8.65940249296704,
+	},
+	{
+		id: 3,
+		tittle: 'UGG',
+		latitude: 12.08420585,
+		longitude: 8.631911307617772,
+	},
+];
 // // Wastes
 export const plasticWRate = 12;
 export const metalWRate = 15;

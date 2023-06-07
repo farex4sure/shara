@@ -1,36 +1,13 @@
 import React, { useState } from 'react';
-import MapComponent from './MapComponent';
+// import { locations } from '../Data';
+// import MapComponent from './MapComponent';
 
 const Location = () => {
 	const [location, setLocation] = useState('');
+	// const [userLocation, setUserLocation] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
-	const userCoordinates = [11.8948389, 8.5364136];
-	const locations = [
-		{
-			id: 0,
-			tittle: 'kano',
-			latitude: 11.9630456,
-			longitude: 8.55034210353827,
-		},
-		{
-			id: 1,
-			tittle: 'NSR',
-			latitude: 12.0001383,
-			longitude: 8.5226245,
-		},
-		{
-			id: 2,
-			tittle: 'MIJ',
-			latitude: 12.17485215,
-			longitude: 8.65940249296704,
-		},
-		{
-			id: 3,
-			tittle: 'UGG',
-			latitude: 12.08420585,
-			longitude: 8.631911307617772,
-		},
-	];
+	// const userCoordinates = [11.8948389, 8.5364136];
+	
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -43,9 +20,13 @@ const Location = () => {
 				Find waste collector
 			</h3>
 			<div className="debug relative w-full max-h-[700px] z-10">
-				<MapComponent locations={locations} userCoordinates={userCoordinates} />
+				{/* <MapComponent locations={locations} userCoordinates={userCoordinates} /> */}
 			</div>
-			<form className="w-full flex flex-col py-4" onSubmit={handleSubmit}>
+
+			<form
+				className="w-full flex flex-col py-4 fixed bottom-0 w-full"
+				onSubmit={handleSubmit}
+			>
 				<div className="mt-2">
 					<label htmlFor="location" className="text-lg font-semibold">
 						Location:
@@ -65,7 +46,7 @@ const Location = () => {
 					className="bg-[#228e01] w-full text-white py-3 my-6 rounded font-bold"
 					disabled={isLoading}
 				>
-					Enter Location
+					Enter Your Location
 				</button>
 			</form>
 		</div>

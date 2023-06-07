@@ -26,15 +26,15 @@ const Dashboard = () => {
 	}
 	if (error) {
 		console.log(error);
-		return <p className="text-5xl text-center text-red-600">Error</p>;
+		// return <p className="text-5xl text-center text-red-600 mt-20">Error</p>;
 	}
 	return (
 		<div className="relative h-full overflow-y-auto">
 			<div className="md:mx-32 py-5 mt-10">
 				<div className="mt-1 mt-5 mb-2 devide-y rounded-lg p-2 space-y-3 shadow-inset shadow-outset shadow-xl">
-					<div className="text-lg my-2 flex px-2">
+					<div className="my-2 flex px-2">
 						<div className="flex-1">
-							<h1 className="text-2xl font-semibold">
+							<h1 className="text-xl font-semibold">
 								Welcome{' '}
 								<span className="capitalize">
 									{name?.substring(0, 15) || 'abdulsalam'}!
@@ -45,13 +45,13 @@ const Dashboard = () => {
 							</p>
 						</div>
 						<div className="">
-							<p className="text-lg font-semibold">Today's</p>
+							<p className="text-sm font-semibold">Today's</p>
 							<p className="text-2xl font-semibold">
 								25<sup>&deg;C</sup>
 							</p>
 						</div>
 					</div>
-					<h2 className="text-2xl font-extrabold p-2 text-green-500">
+					<h2 className="text-xl font-extrabold p-2 text-green-500">
 						Wallet:
 						<span className="text-xl mx-3 font-semibold my-2">
 							&#8358;{user.wallet?.balance}
@@ -59,31 +59,35 @@ const Dashboard = () => {
 					</h2>
 				</div>
 				<div className="h-[300px]">
-					<YouTubeVideo videoId={videoId} />
+					{error ? (
+						<p className="text-lg text-red-500 text-center mt-10">{error}</p>
+					) : (
+						<YouTubeVideo videoId={videoId} />
+					)}
 				</div>
-				<div className="text-lg my-2 space-y-2 px-1">
-					<h2 className="text-2xl font-extrabold my-2">Notifications</h2>
+				<div className="text-sm my-2 space-y-2 px-1">
+					<h2 className="text-xl font-extrabold my-2 mx-2">Notifications</h2>
 					<div className="rounded-lg px-4 py-3 bg-gray-50">
-						<p className="font-semibold text-xl text-green-500">Credit</p>
+						<p className="font-semibold text-sm text-green-500">Credit</p>
 						<p className="font-semibold text-green-500">
 							You have reward for the 5kg waste you sold
 						</p>
 					</div>
 					<div className=" rounded-lg px-4 py-3 bg-gray-50">
-						<p className="font-semibold text-xl text-green-500">New message</p>
+						<p className="font-semibold text-sm text-green-500">New message</p>
 						<p className="font-semibold text-green-500">
 							Share your progress with your friends to invite them on shara
 						</p>
 					</div>
 
 					<div className="rounded-lg px-4 py-3 bg-gray-50">
-						<p className="font-semibold text-xl text-green-500">Alert</p>
-						<p className="font-semibold text-xl text-green-500">
+						<p className="font-semibold text-lg text-green-500">Alert</p>
+						<p className="font-semibold text-sm text-green-500">
 							Check your progress on shara
 						</p>
 					</div>
 					<div className="rounded-lg px-4 py-1 bg-gray-50 invisible">
-						<p className="font-semibold text-xl text-green-500">
+						<p className="font-semibold text-sm text-green-500">
 							Check your progress on shara
 						</p>
 					</div>
@@ -94,8 +98,8 @@ const Dashboard = () => {
 					href="./location"
 					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
 				>
-					<FaMapMarked className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
-					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
+					<FaMapMarked className="w-6 h-6 md:w-10 md:h-10 mx-auto text-[#228e01] group-hover:text-green-500" />
+					<p className="text-[#228e01] group-hover:text-green-500 text-sm font-semibold">
 						sell waste
 					</p>
 				</a>
@@ -103,8 +107,8 @@ const Dashboard = () => {
 					href="./wallet"
 					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
 				>
-					<FaWallet className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
-					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
+					<FaWallet className="w-6 h-6 md:w-10 md:h-10 mx-auto text-[#228e01] group-hover:text-green-500" />
+					<p className="text-[#228e01] group-hover:text-green-500 text-sm font-semibold">
 						Reward
 					</p>
 				</a>
@@ -112,8 +116,8 @@ const Dashboard = () => {
 					href="./chat"
 					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
 				>
-					<BsChatTextFill className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
-					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
+					<BsChatTextFill className="w-6 h-6 md:w-10 md:h-10 mx-auto text-[#228e01] group-hover:text-green-500" />
+					<p className="text-[#228e01] group-hover:text-green-500 text-sm font-semibold">
 						Chats
 					</p>
 				</a>
@@ -121,8 +125,8 @@ const Dashboard = () => {
 					href="./notifications"
 					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
 				>
-					<FiBell className="w-8 h-8 md:w-14 md:h-14 mx-auto text-[#228e01] group-hover:text-green-500" />
-					<p className="text-[#228e01] group-hover:text-green-500 text-lg font-semibold">
+					<FiBell className="w-6 h-6 md:w-10 md:h-10 mx-auto text-[#228e01] group-hover:text-green-500" />
+					<p className="text-[#228e01] group-hover:text-green-500 text-sm font-semibold">
 						Notifications
 					</p>
 				</a>

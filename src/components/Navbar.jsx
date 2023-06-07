@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 	const [open, setOpen] = useState(false);
 	const { user } = useContext(AuthContext);
+	const name =user?.user?.name
 	const { logout } = useLogout();
 	return (
 		<nav
@@ -32,7 +33,7 @@ const Navbar = () => {
 						open ? 'text-gray-900' : 'text-gray-100'
 					} cursor-pointer text-3xl  m-5`}
 				>
-					<ion-icon name="menu" color="#228e01" size="large"></ion-icon>
+					<ion-icon name="menu" className="text-[#228e01] h-8 w-8"></ion-icon>
 				</div>
 
 				<div
@@ -49,8 +50,7 @@ const Navbar = () => {
 						>
 							<ion-icon
 								name="close-outline"
-								color="#228e01"
-								size="large"
+								className="text-[#228e01] h-8 w-8"
 							></ion-icon>
 						</div>
 						{user ? (
@@ -63,9 +63,11 @@ const Navbar = () => {
 											className="w-14 h-14 rounded-full"
 										/>
 										<div className="p-1 text-green-500">
-											<h5 className="text-lg font-bold">{user?.user?.name}</h5>
-											<p className="text-sm">
-												Bal:&#8358;{user?.wallet?.balance || '18,420.81'}
+											<h5 className="text-lg font-bold capitalize">
+												{name?.length > 14 ? `${name?.substring(0, 15)}".."` : name}
+											</h5>
+											<p className="text-lg">
+												Bal: &#8358;{user?.wallet?.balance}
 											</p>
 										</div>
 									</div>
@@ -76,16 +78,15 @@ const Navbar = () => {
 										<li
 											onClick={() => setOpen(false)}
 											key={i}
-											className="px-6 text-green-600 rounded-xl hover:bg-green-500 hover:text-white"
+											className="px-2 md:px-6 text-green-600 rounded-xl hover:bg-green-500 hover:text-white"
 										>
 											<a
 												href={menu?.link}
-												className="flex p-3 place-items-center gap-3 space-x-2"
+												className="flex p-2 sm:p-3 place-items-center gap-3 space-x-2"
 											>
 												<ion-icon
 													name={menu.icon}
-													size="large"
-													className="m-2"
+													className=" h-8 w-8 m-2"
 												></ion-icon>
 												<p>{menu?.name}</p>
 											</a>
@@ -93,7 +94,7 @@ const Navbar = () => {
 									))}
 									<li
 										onClick={() => logout()}
-										className="px-6 text-blue-500 hover:bg-blue-500 hover:text-white rounded-xl"
+										className="px-2 md:px-6 text-red-500 hover:bg-red-400 hover:text-white rounded-xl"
 									>
 										<p
 											onClick={() => setOpen(false)}
@@ -101,8 +102,7 @@ const Navbar = () => {
 										>
 											<ion-icon
 												name="log-out"
-												size="large"
-												className="m-2"
+												className=" h-8 w-8 m-2"
 											></ion-icon>
 											<span>Log out</span>
 										</p>
@@ -115,16 +115,15 @@ const Navbar = () => {
 									<li
 										onClick={() => setOpen(false)}
 										key={i}
-										className="px-6 text-green-600 rounded-xl hover:bg-green-500 hover:text-white"
+										className="px-2 md:px-6 text-green-600 rounded-xl hover:bg-green-500 hover:text-white"
 									>
 										<Link
 											to={menu?.link}
-											className="flex p-3 place-items-center gap-3 space-x-2"
+											className="flex p-2 sm:p-3 place-items-center gap-3 space-x-2"
 										>
 											<ion-icon
 												name={menu.icon}
-												size="large"
-												className="m-2"
+												className=" h-8 w-8 m-2"
 											></ion-icon>
 											<p>{menu?.name}</p>
 										</Link>

@@ -43,7 +43,7 @@ export const useWallet = () => {
 			});
 	};
 	// // check receivers wallet
-	const receiverwallet = async (phone) => {
+	const checkReceiverWallet = async (phone) => {
 		setLoading(false);
 		setError(null);
 		if (phone === '') {
@@ -55,9 +55,9 @@ export const useWallet = () => {
 			.then((res) => res.data)
 			.then((data) => {
 				setSuccess(data?.user?.name);
-				console.log(data);
 				// update loading state
 				setLoading(false);
+				return data;
 			})
 			.catch((error) => {
 				setError(error ? error.response?.data.error || error.message : error);
@@ -207,7 +207,7 @@ export const useWallet = () => {
 
 	return {
 		wallet,
-		receiverwallet,
+		checkReceiverWallet,
 		sendMoney,
 		receiveMoney,
 		changePin,
