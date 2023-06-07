@@ -11,9 +11,9 @@ import { FiBell } from 'react-icons/fi';
 import { BsChatTextFill } from 'react-icons/bs';
 import { FaWallet, FaMapMarked } from 'react-icons/fa';
 import YouTubeVideo from './YouTubeVideo';
-
 const Dashboard = () => {
-	const videoId = 'Qyu-fZ8BOnI';
+	const videos = ['Qyu-fZ8BOnI', 'yukvSfTxrh8', '7fVUyVuyP6I', '7SCBdcXg2fs'];
+	const videoId = videos[Math.floor(Math.random() * videos.length)];
 	const { user } = useContext(AuthContext);
 	const { wallet, loading, error } = useWallet();
 	const phone = user.user?.phone;
@@ -29,21 +29,23 @@ const Dashboard = () => {
 	}
 	return (
 		<div className="relative h-full">
-			<div className=" md:mx-32 mx-5 py-5 ">
-				<div className="text-lg mt-12 my-2 flex">
+			<div className=" md:mx-32 py-5">
+				<div className="text-lg mt-12 my-2 flex px-2">
 					<div className="flex-1">
 						<h1 className="text-2xl font-semibold">Welcome Salma!</h1>
 						<p className="mt-1 text-sm">Let take action together. 👋</p>
 					</div>
 					<div className="">
-						<p className="text-2xl font-semibold">Today's</p>
-						<p>37</p>
+						<p className="text-lg font-semibold">Today's</p>
+						<p className="text-2xl font-semibold">
+							25<sup>&deg;C</sup>
+						</p>
 					</div>
 				</div>
-				<div>
+				<div className="h-[300px]">
 					<YouTubeVideo videoId={videoId} />
 				</div>
-				<div className="rounded-lg text-white p-2 space-y-3 shadow-lg">
+				<div className="mt-1 rounded-lg text-white p-2 space-y-3 shadow-lg">
 					<h2 className="text-2xl font-extrabold p-2 text-green-500">
 						Wallet:
 						<span className="text-xl mx-3 font-semibold my-2">
@@ -51,19 +53,30 @@ const Dashboard = () => {
 						</span>
 					</h2>
 				</div>
-				<div className="text-lg my-2">
-					<h2 className="text-2xl font-extrabold">Notifications</h2>
-					<div className="marquee-container bg-gray-200 overflow-hidden">
-						<div className="marquee inline-block whitespace-nowrap animation-marquee">
-							<span className="text-green-500 text-xl font-semibold">
-								A Clean, Healthy and Wealthy City for All, Remember to recycle,
-								reuse and reduce waste in your community.
-							</span>
-						</div>
+				<div className="text-lg my-2 divide-y">
+					<h2 className="text-2xl font-extrabold my-2">Notifications</h2>
+					<div className="rounded-lg px-4 py-3 bg-gray-50">
+						<p className="font-semibold text-xl text-green-500">Credit</p>
+						<p className="font-semibold text-green-500">
+							You have reward for the 5kg waste you sold
+						</p>
+					</div>
+					<div className=" rounded-lg px-4 py-3 bg-gray-50">
+						<p className="font-semibold text-xl text-green-500">New message</p>
+						<p className="font-semibold text-green-500">
+							Share your progress with your friends to invite them on shara
+						</p>
+					</div>
+
+					<div className="rounded-lg px-4 py-3 bg-gray-50">
+						<p className="font-semibold text-xl text-green-500">Alert</p>
+						<p className="font-semibold text-xl text-green-500">
+							Check your progress on shara
+						</p>
 					</div>
 				</div>
 			</div>
-			<div className="flex justify-between shadow absolute bottom-0 w-full p-2">
+			<div className="flex justify-between shadow fixed bottom-0 w-full p-2 bg-gray-50 z-10">
 				<a href="./location">
 					<div className="p-1">
 						<FaMapMarked className="w-8 h-8 md:w-14 md:h-14" color="#228e01" />
