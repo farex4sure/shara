@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+
 import {
 	WebChatContainer,
 	setEnableDebug,
@@ -6,9 +8,13 @@ import {
 
 const Chat = () => {
 	const [language, setLanguage] = useState(false);
+	const [chat, setChat] = useState('');
 	const handleLanguage = () => {
 		setLanguage(!language);
 	};
+
+	const { user } = useContext(AuthContext);
+	const name = user.user?.name;
 	const webChatOptions = {
 		integrationID: process.env.REACT_APP_ID,
 		region: process.env.REACT_APP_REGION,
@@ -45,41 +51,41 @@ const Chat = () => {
 						</ul>
 					</div>
 				</div>
-				<div className="text-xl space-y-5 pt-20 md:pb-32 pb-24">
+				<div className="text-base md:text-xl space-y-5 pt-20 md:pb-32 pb-24">
 					<div className="mb-1 flex justify-start mx-4">
-						<div className="w-[90%] lg:w-1/2 bg-gray-100 mb-2 rounded-t-lg rounded-br-lg p-2 text-gray-600">
+						<div className="w-[90%] lg:w-1/2 bg-gray-100 mb-px rounded-t-lg rounded-br-lg p-2 text-gray-600">
 							Hello there
 						</div>
 					</div>
 					<div className="mb-1 flex justify-end mx-4">
-						<div className="w-[90%] lg:w-1/2 bg-green-500 mb-2 rounded-t-lg rounded-br-lg p-2 text-gray-200">
-							Hi Mike Monday
+						<div className="w-[90%] lg:w-1/2 bg-green-500 mb-px rounded-t-lg rounded-br-lg p-2 text-gray-200">
+							Hi {name || 'Mike Monday'}
 						</div>
 					</div>
 					<div className="mb-1 flex justify-start mx-4">
-						<div className="w-[90%] lg:w-1/2 bg-gray-100 mb-2 rounded-t-lg rounded-br-lg p-2 text-gray-600">
+						<div className="w-[90%] lg:w-1/2 bg-gray-100 mb-px rounded-t-lg rounded-br-lg p-2 text-gray-600">
 							What are the categories of waste that can be sold?
 						</div>
 					</div>
 					<div className="mb-1 flex justify-end mx-4">
-						<div className="w-[90%] lg:w-1/2 bg-green-500 mb-2 rounded-t-lg rounded-br-lg p-2 text-gray-200">
+						<div className="w-[90%] lg:w-1/2 bg-green-500 mb-px rounded-t-lg rounded-br-lg p-2 text-gray-200">
 							You can sell most recycleble waste such as Papers, plastic, metal
 							etc
 						</div>
 					</div>
 					<div className="mb-1 flex justify-start mx-4">
-						<div className="w-[90%] lg:w-1/2 bg-gray-100 mb-2 rounded-t-lg rounded-br-lg p-2 text-gray-600">
+						<div className="w-[90%] lg:w-1/2 bg-gray-100 mb-px rounded-t-lg rounded-br-lg p-2 text-gray-600">
 							What are the payment systems?
 						</div>
 					</div>
 					<div className="mb-1 flex justify-end mx-4">
-						<div className="w-[90%] lg:w-1/2 bg-green-500 mb-2 rounded-t-lg rounded-br-lg p-2 text-gray-200">
+						<div className="w-[90%] lg:w-1/2 bg-green-500 mb-px rounded-t-lg rounded-br-lg p-2 text-gray-200">
 							Transcations and payment can be made through your wallet and also
 							in cash
 						</div>
 					</div>
 					<div className="mb-1 flex justify-start mx-4">
-						<div className="w-[90%] lg:w-1/2 bg-gray-100 mb-2 rounded-t-lg rounded-br-lg p-2 text-gray-600">
+						<div className="w-[90%] lg:w-1/2 bg-gray-100 mb-px rounded-t-lg rounded-br-lg p-2 text-gray-600">
 							How soon will your Agent arrive to pick up my waste as soon as a
 							place order
 						</div>
@@ -97,10 +103,15 @@ const Chat = () => {
 						<textarea
 							className=" w-full border border-green-500 rounded-xl px-5 py-1"
 							cols="1"
+							value={chat}
+							onChange={(e) => setChat(e.target.value)}
 						></textarea>
 					</div>
 					<div className="md:space-x-10 space-x-3 text-green-500 text-xl">
-						<i className="fa-solid fa-paper-plane cursor-pointer"></i>
+						<i
+							onClick={() => setChat('')}
+							className="fa-solid fa-paper-plane cursor-pointer"
+						></i>
 						<i className="fa-solid fa-microphone-lines cursor-pointer pr-2"></i>
 					</div>
 				</div>

@@ -10,11 +10,17 @@ const events = [
 	{ title: 'Discuss ideas', date: '2023-06-06' },
 	{ title: 'Start building', date: '2023-06-07' },
 	{ title: 'Test product', date: '2023-06-08' },
-	{ title: 'Make nessarry correction', date: '2023-06-09' },
-	{ title: 'Review project', date: '2023-06-10' },
+	{ title: 'Submit project', date: '2023-06-9' },
 	{ title: 'Pick up', date: '2023-06-17' },
 	{ title: 'Submit project', date: '2023-06-11' },
-	{ title: 'Pick up', date: '2023-06-17' },
+	{ title: 'Pick up', date: '2023-06-24' },
+	{ title: 'Pick up', date: '2023-07-08' },
+	{ title: 'Pick up', date: '2023-07-19' },
+	{ title: 'Pick up', date: '2023-08-29' },
+	{ title: 'Pick up', date: '2023-08-07' },
+	{ title: 'Pick up', date: '2023-09-19' },
+	{ title: 'Pick up', date: '2023-09-26' },
+	{ title: 'Pick up', date: '2023-10-17' },
 ];
 
 const Calendar = () => {
@@ -22,7 +28,7 @@ const Calendar = () => {
 
 	const handleDateClick = (arg) => {
 		setShowdate(arg.dateStr);
-		// console.log(arg);
+		console.log(arg);
 	};
 	return (
 		<div className="p-1 mt-8 md:mx-2 py-10 h-screen relative">

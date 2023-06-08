@@ -13,10 +13,7 @@ const Error = () => {
 					</h2>
 					<p className="text-2xl my-2">
 						Back To{' '}
-						<button
-							onClick={() => navigate('/')}
-							className="btn btn-primary text-green-500"
-						>
+						<button onClick={() => navigate('/')} className="text-green-500">
 							Home Page
 						</button>
 					</p>

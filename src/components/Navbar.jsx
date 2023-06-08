@@ -32,10 +32,10 @@ const Navbar = () => {
 				<div
 					onClick={() => setOpen(!open)}
 					className={` ${
-						open ? 'text-gray-900' : 'text-gray-100'
-					} cursor-pointer text-3xl  m-5`}
+						open ? 'text-gray-900' : 'text-[#228e01]'
+					} cursor-pointer text-3xl  m-5 hover:text-green-500`}
 				>
-					<ion-icon name="menu" className="text-[#228e01] h-8 w-8"></ion-icon>
+					<ion-icon name="menu" className="h-8 w-8"></ion-icon>
 				</div>
 
 				<div
@@ -48,11 +48,11 @@ const Navbar = () => {
 							onClick={() => setOpen(!open)}
 							className={` ${
 								open ? 'text-green-900' : 'text-green-100'
-							} cursor-pointer text-3xl flex items-center justify-start`}
+							} cursor-pointer text-3xl flex items-center justify-start text-[#228e01]`}
 						>
 							<ion-icon
 								name="close-outline"
-								className="text-[#228e01] h-6 w-6 md:h-8 md:h-8"
+								className=" h-6 w-6 md:h-8 md:w-8"
 							></ion-icon>
 						</div>
 						{user ? (
@@ -67,7 +67,7 @@ const Navbar = () => {
 										<div className="p-1 text-green-500">
 											<h5 className="text-lg font-bold capitalize">
 												{name?.length > 14
-													? `${name?.substring(0, 15)}".."`
+													? `${reduceName(name?.substring(0, 15))}..`
 													: name}
 											</h5>
 											<p className="text-lg">
@@ -143,3 +143,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+const reduceName = (name) => {
+	return name;
+};

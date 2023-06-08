@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { locations } from '../Data';
 import MapComponent from './MapComponent';
 import Geocode from 'react-geocode';
 import { useLocation } from '../hooks/useLocation';
-
 const Location = () => {
 	const [address, setAddress] = useState('');
-	const [coordinates, setCoordinates] = useState([12.0035373, 8.5611104]);
+	const [coordinates, setCoordinates] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [enterLocation, setEnterLocation] = useState(true);
+	const { user } = useContext(AuthContext);
+	const title = user.user?.name;
+	const phone = user.user?.phone;
 	// 'No 2, Ahmadu Bello Way, Nassarawa, Kano Nigeria';
 	const { getlocationCoordinates } = useLocation();
 	useEffect(() => {
@@ -33,18 +36,19 @@ const Location = () => {
 			Geocode.fromAddress(address).then(
 				(response) => {
 					const { lat, lng } = response.results[0].geometry.location;
-					console.log(lat, lng);
-					setCoordinates(lat, lng);
+					console.log(response.results[0].geometry.location);
+					setCoordinates({ lat, lng, address, phone, title});
 					setEnterLocation(true);
+					setIsLoading(false);
 				},
 				(error) => {
+					setIsLoading(false);
 					console.error(
 						'Geocode was not successful for the following reason:',
 						error
 					);
 				}
 			);
-			setIsLoading(false);
 		}
 	};
 	return (
@@ -63,7 +67,7 @@ const Location = () => {
 				>
 					<div className="mt-2">
 						<label htmlFor="location" className="text-lg font-semibold">
-							Location:
+							Enter your Location:
 						</label>
 						<input
 							value={address}
@@ -80,7 +84,7 @@ const Location = () => {
 						className="bg-[#228e01] w-full text-white py-3 my-2 rounded font-bold"
 						disabled={isLoading}
 					>
-						Enter Your Location
+						{!isLoading ? 'Enter Your Location' : 'Checking location ...'}
 					</button>
 				</form>
 			) : (
