@@ -5,13 +5,16 @@ import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClic
 import { HiXCircle } from 'react-icons/hi';
 
 const events = [
+	{ title: 'pickup', date: '2023-06-03' },
 	{ title: 'Start project', date: '2023-06-05' },
 	{ title: 'Discuss ideas', date: '2023-06-06' },
 	{ title: 'Start building', date: '2023-06-07' },
 	{ title: 'Test product', date: '2023-06-08' },
 	{ title: 'Make nessarry correction', date: '2023-06-09' },
 	{ title: 'Review project', date: '2023-06-10' },
+	{ title: 'Pick up', date: '2023-06-17' },
 	{ title: 'Submit project', date: '2023-06-11' },
+	{ title: 'Pick up', date: '2023-06-17' },
 ];
 
 const Calendar = () => {
@@ -22,9 +25,11 @@ const Calendar = () => {
 		// console.log(arg);
 	};
 	return (
-		<div className="p-1 mt-8 mx-2 py-10 h-screen relative">
-			<h3 className="text-center text-2xl font-semibold m-4">Waste Schedule</h3>
-			<div>
+		<div className="p-1 mt-8 md:mx-2 py-10 h-screen relative">
+			<h3 className="text-center text-2xl font-semibold m-4">
+				Waste Collection Schedule
+			</h3>
+			<div className="text-sm md:text-lg">
 				<FullCalendar
 					plugins={[dayGridPlugin, interactionPlugin]}
 					initialView="dayGridMonth"

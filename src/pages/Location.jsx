@@ -1,30 +1,50 @@
 import React, { useState } from 'react';
-// import { locations } from '../Data';
-// import MapComponent from './MapComponent';
+import { locations } from '../Data';
+import MapComponent from './MapComponent';
+import Geocode from 'react-geocode';
 
-const Location = () => {
-	const [location, setLocation] = useState('');
-	// const [userLocation, setUserLocation] = useState('');
+const Location = ({ google }) => {
+	const [address, setAddress] = useState(
+		'No 2, Ahmadu Bello Way, Nassarawa, Kano Nigeria'
+	);
+	const [coordinates, setCoordinates] = useState([12.0035373, 8.5611104]);
 	const [isLoading, setIsLoading] = useState(false);
-	// const userCoordinates = [11.8948389, 8.5364136];
-	
 
+	Geocode.setLocationType('ROOFTOP');
+	Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAP_API);
+	Geocode.setLanguage('en');
+	Geocode.setRegion('es');
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(location);
-		setIsLoading(false);
+		if (address !== '') {
+			setIsLoading(true);
+			Geocode.fromAddress(address).then(
+				(response) => {
+					const { lat, lng } = response.results[0].geometry.location;
+					console.log(lat, lng);
+					setCoordinates(lat, lng);
+				},
+				(error) => {
+					console.error(
+						'Geocode was not successful for the following reason:',
+						error
+					);
+				}
+			);
+			setIsLoading(false);
+		}
 	};
 	return (
-		<div className="p-1 mt-8 mx-2 py-10 h-screen relative">
-			<h3 className="text-center text-2xl font-semibold m-4">
-				Find waste collector
+		<div className="p-1 mt-8 py-10 h-screen relative w-full">
+			<h3 className="text-center text-2xl font-semibold m-4 z-10">
+				Find Waste Collector
 			</h3>
-			<div className="debug relative w-full max-h-[700px] z-10">
-				{/* <MapComponent locations={locations} userCoordinates={userCoordinates} /> */}
+			<div className="w-full h-full fixed top-0 bottom-0">
+				<MapComponent locations={locations} userCoordinates={coordinates} />
 			</div>
 
 			<form
-				className="w-full flex flex-col py-4 fixed bottom-0 w-full"
+				className="w-full flex flex-col py-4 fixed bottom-0 px-2 z-10 bg-white"
 				onSubmit={handleSubmit}
 			>
 				<div className="mt-2">
@@ -32,10 +52,10 @@ const Location = () => {
 						Location:
 					</label>
 					<input
-						onChange={(e) => setLocation(e.target.value)}
+						value={address}
+						onChange={(e) => setAddress(e.target.value)}
 						className="px-3 my-2 py-1.5 text-lg w-full font-normal text-gray-500 bg-clip-padding border-2 border-gray-400 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
 						type="text"
-						value={location}
 						placeholder="Nasarawa, Kano State, Nigeria"
 						id="location"
 						autoComplete="location"
@@ -43,7 +63,7 @@ const Location = () => {
 				</div>
 				<button
 					type="submit"
-					className="bg-[#228e01] w-full text-white py-3 my-6 rounded font-bold"
+					className="bg-[#228e01] w-full text-white py-3 my-2 rounded font-bold"
 					disabled={isLoading}
 				>
 					Enter Your Location

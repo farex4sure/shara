@@ -1,9 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-// import UserImg from "../assets/pngwing.com (59).png";
 import { useWallet } from '../hooks/useWallet';
-// import RecycleBin from '../assets/pngwing.com (76).png';
-// import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { useWeather } from '../hooks/useWeather';
 import '@splidejs/react-splide/css';
 // import Bot from '../components/Bot';
 // FiCalendar, FiCloud;
@@ -15,12 +13,18 @@ const Dashboard = () => {
 	const videos = ['Qyu-fZ8BOnI', 'yukvSfTxrh8', '7fVUyVuyP6I', '7SCBdcXg2fs'];
 	const videoId = videos[Math.floor(Math.random() * videos.length)];
 	const { user } = useContext(AuthContext);
+	const { getWeather, weather } = useWeather();
 	const { wallet, loading, error } = useWallet();
 	const phone = user.user?.phone;
 	const name = user.user?.name;
+	const location = user.user?.address || 'kano';
 	useEffect(() => {
 		wallet({ phone });
-	}, [phone, wallet]);
+	}, [user, phone, wallet]);
+	useEffect(() => {
+		getWeather(location);
+	}, [location, getWeather]);
+
 	if (loading) {
 		return <p className="text-5xl text-center">Loading</p>;
 	}
@@ -31,7 +35,7 @@ const Dashboard = () => {
 	return (
 		<div className="relative h-full overflow-y-auto">
 			<div className="md:mx-32 py-5 mt-10">
-				<div className="mt-1 mt-5 mb-2 devide-y rounded-lg p-2 space-y-3 shadow-inset shadow-outset shadow-xl">
+				<div className="mt-1 md:mt-5 mb-2 devide-y rounded-lg p-2 space-y-3 shadow-inset shadow-outset shadow-xl">
 					<div className="my-2 flex px-2">
 						<div className="flex-1">
 							<h1 className="text-lg font-semibold">
@@ -40,14 +44,15 @@ const Dashboard = () => {
 									{name?.substring(0, 15) || 'abdulsalam'}!
 								</span>
 							</h1>
-							<p className="text-sm mt-1 text-sm font-semibold">
+							<p className="text-sm mt-1 font-semibold">
 								Let take action together. 👋
 							</p>
 						</div>
 						<div className="">
 							<p className="text-sm font-semibold">Today's</p>
 							<p className="text-2xl font-semibold">
-								25<sup>&deg;C</sup>
+								{weather}
+								<sup>&deg;C</sup>
 							</p>
 						</div>
 					</div>

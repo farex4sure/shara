@@ -1,6 +1,6 @@
 export const menuLinks = [
 	{ name: 'Dashboard', link: './dashboard', icon: 'home' },
-	{ name: 'Progress', link: './chat', icon: 'chat' },
+	{ name: 'Progress', link: './chat', icon: 'chatbox-ellipses-outline' },
 	{ name: 'Schedule', link: './calendar', icon: 'calendar' },
 	{ name: 'Wallet', link: './wallet', icon: 'wallet' },
 	{ name: 'Profile', link: './profile', icon: 'person' },
@@ -16,25 +16,29 @@ export const newLinks = [
 export const locations = [
 	{
 		id: 0,
-		tittle: 'kano',
+		title: 'kano',
+		name: 'Mr. Monday K.',
 		latitude: 11.9630456,
 		longitude: 8.55034210353827,
 	},
 	{
 		id: 1,
-		tittle: 'NSR',
+		title: 'NSR',
+		name: 'Mr. john Doe',
 		latitude: 12.0001383,
 		longitude: 8.5226245,
 	},
 	{
 		id: 2,
-		tittle: 'MIJ',
+		title: 'MIJ',
+		name: 'Mrs. Mary Sue',
 		latitude: 12.17485215,
 		longitude: 8.65940249296704,
 	},
 	{
 		id: 3,
-		tittle: 'UGG',
+		title: 'UGG',
+		name: 'Mr. james F.',
 		latitude: 12.08420585,
 		longitude: 8.631911307617772,
 	},
