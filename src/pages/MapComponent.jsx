@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
+import Modal from 'react-modal';
+import { BsChatTextFill, BsPhone } from 'react-icons/bs';
+import { HiXCircle } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
 
 const AnyReactComponent = ({ text, onClick }) => (
 	<div onClick={onClick}>
@@ -8,14 +12,20 @@ const AnyReactComponent = ({ text, onClick }) => (
 			alt="Location Icon"
 			style={{ width: '30px', height: '30px' }}
 		/>
-		{text}
+		<p>{text}</p>
 	</div>
 );
 const MapContainer = ({ userCoordinates, locations }) => {
 	const apiKey = process.env.REACT_APP_GOOGLE_MAP_API;
+	const [selectedLocation, setSelectedLocation] = useState(null);
+	const navigate = useNavigate();
+
 	const handleMarkerClick = (location) => {
-		console.log('Marker clicked:', location);
-		// Perform any desired action when a marker is clicked
+		setSelectedLocation(location);
+	};
+
+	const handleCloseModal = () => {
+		setSelectedLocation(null);
 	};
 
 	return (
@@ -40,6 +50,48 @@ const MapContainer = ({ userCoordinates, locations }) => {
 					/>
 				))}
 			</GoogleMapReact>
+			<Modal
+				isOpen={selectedLocation !== null}
+				ariaHideApp={false}
+				onRequestClose={handleCloseModal}
+				contentLabel="Location Modal"
+				className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-md z-10 w-10/12 md:max-w-md"
+				overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+			>
+				<h2 className="text-green-500 text-lg font-semibold text-center">
+					Agent information
+				</h2>
+				{selectedLocation && (
+					<div className="w-fit pt-2">
+						<h2 className="capitalize">
+							<span className="font-semibold">Name: </span>
+							{selectedLocation.title}
+						</h2>
+						<p>
+							<span className="font-semibold">Address:</span>{' '}
+							{selectedLocation.address}
+						</p>
+						<p>
+							<span className="font-semibold">Phone:</span>{' '}
+							{selectedLocation.phone}
+						</p>
+						<div className="mt-2 flex space-x-2 p-1 mb-1">
+							<BsChatTextFill
+								onClick={() => navigate('/chat')}
+								className="h-6 w-6 text-green-500 hover:text-[#228e01] cursor-pointer"
+							/>
+							<BsPhone
+								onClick={() => navigate('/chat')}
+								className="h-6 w-6 text-green-500 hover:text-[#228e01] cursor-pointer"
+							/>
+						</div>
+					</div>
+				)}
+				<HiXCircle
+					className="absolute top-2 h-6 w-6 right-2 text-gray-500 hover:text-red-500 cursor-pointer"
+					onClick={handleCloseModal}
+				/>
+			</Modal>
 		</div>
 	);
 };

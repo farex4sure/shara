@@ -18,7 +18,9 @@ const Navbar = () => {
 		>
 			<div className="flex items-center justify-between">
 				<div className="mx-7">
-					<img className="w-16" src={Logo} alt="" />
+					<a href="/">
+						<img className="w-16" src={Logo} alt="" />
+					</a>
 					{/* <h4
             className={`text-lg md:text-3xl uppercase font-bold  ${
               open ? "text-green-500" : "text-green-700"

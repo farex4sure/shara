@@ -10,7 +10,7 @@ export const useWeather = () => {
 				`https://api.weatherapi.com/v1/current.json?key=${Key}&q=${location}&aqi=no`
 			)
 			.then((data) => {
-                setWeather(data.data?.current?.temp_c);
+                setWeather(data.data?.current);
 			})
 			.catch((err) => console.log(err));
 	};

@@ -18,6 +18,8 @@ export const locations = [
 		id: 0,
 		title: 'kano',
 		name: 'Mr. Monday K.',
+		phone: '+23409128562',
+		address: 'No. 63, tarauni, Kano State',
 		latitude: 11.9630456,
 		longitude: 8.55034210353827,
 	},
@@ -25,6 +27,8 @@ export const locations = [
 		id: 1,
 		title: 'NSR',
 		name: 'Mr. john Doe',
+		phone: '+23409123456',
+		address: 'No. 57, Ungogo, Kano State',
 		latitude: 12.0001383,
 		longitude: 8.5226245,
 	},
@@ -32,6 +36,8 @@ export const locations = [
 		id: 2,
 		title: 'MIJ',
 		name: 'Mrs. Mary Sue',
+		phone: '+234912345690',
+		address: 'No. 57, Minjibir, Kano State',
 		latitude: 12.17485215,
 		longitude: 8.65940249296704,
 	},
@@ -39,9 +45,12 @@ export const locations = [
 		id: 3,
 		title: 'UGG',
 		name: 'Mr. james F.',
+		phone: '+23409123456',
+		address: 'No. 57, dakata, Nassarawa, Kano State',
 		latitude: 12.08420585,
 		longitude: 8.631911307617772,
 	},
+	
 ];
 // // Wastes
 export const plasticWRate = 12;

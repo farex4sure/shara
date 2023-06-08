@@ -48,12 +48,16 @@ const Dashboard = () => {
 								Let take action together. 👋
 							</p>
 						</div>
-						<div className="">
-							<p className="text-sm font-semibold">Today's</p>
-							<p className="text-2xl font-semibold">
-								{weather}
+						<div className="flex">
+							<p className="text-xl font-semibold">
+								{weather?.temp_c}
 								<sup>&deg;C</sup>
 							</p>
+							<img
+								src={weather?.condition?.icon}
+								alt={weather?.condition?.text}
+								className=""
+							/>
 						</div>
 					</div>
 					<h2 className="text-xl font-extrabold p-2 text-green-500">
@@ -63,7 +67,7 @@ const Dashboard = () => {
 						</span>
 					</h2>
 				</div>
-				<div className="max-h-[300px]">
+				<div className="h-[300px] max-h-[400px]">
 					<YouTubeVideo videoId={videoId} />
 				</div>
 				<div className="text-sm my-2 space-y-2 px-1">
