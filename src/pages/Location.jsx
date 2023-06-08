@@ -37,7 +37,7 @@ const Location = () => {
 				(response) => {
 					const { lat, lng } = response.results[0].geometry.location;
 					setCoordinates({ lat, lng, address, phone, title });
-					console.log({ lat, lng, address, phone, title });
+					console.log({ address, phone, title, lat, lng });
 					setEnterLocation(true);
 					setIsLoading(false);
 				},
