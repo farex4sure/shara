@@ -36,8 +36,8 @@ const Location = () => {
 			Geocode.fromAddress(address).then(
 				(response) => {
 					const { lat, lng } = response.results[0].geometry.location;
-					console.log(response.results[0].geometry.location);
-					setCoordinates({ lat, lng, address, phone, title});
+					setCoordinates({ lat, lng, address, phone, title });
+					console.log({ lat, lng, address, phone, title });
 					setEnterLocation(true);
 					setIsLoading(false);
 				},
