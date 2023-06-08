@@ -67,7 +67,7 @@ const Dashboard = () => {
 						</span>
 					</h2>
 				</div>
-				<div className="h-[250px] debug">
+				<div className="h-[250px] md:h-[350px]">
 					<YouTubeVideo videoId={videoId} />
 				</div>
 				<div className="text-sm my-2 space-y-2 px-1">

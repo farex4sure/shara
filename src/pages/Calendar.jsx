@@ -32,7 +32,7 @@ const Calendar = () => {
 	};
 	return (
 		<div className="p-1 mt-8 md:mx-2 py-10 h-screen relative">
-			<h3 className="text-center text-2xl font-semibold m-4">
+			<h3 className="text-center text-xl md:text-2xl font-semibold m-4 z-20 relative w-8/12 mx-auto text-green-500">
 				Waste Collection Schedule
 			</h3>
 			<div className="text-sm md:text-lg">
@@ -48,7 +48,10 @@ const Calendar = () => {
 				<div className="bg-black bg-opacity-20 absolute w-full h-full top-0 left-0 flex  z-10 place-items-center duration-500">
 					<div className="text-center text-lg bg-green-50 w-10/12 p-4 mx-auto rounded-md shadow-md relative">
 						<div className="absolute top-70 right-5 cursor-pointer">
-							<HiXCircle onClick={() => setShowdate(false)} />
+							<HiXCircle
+								onClick={() => setShowdate(false)}
+								className="h-6 w-6 text-red-400 hover:text-red-500"
+							/>
 						</div>
 						<h5 className="font-semibold text-lg mt-2">Date Information</h5>
 						<p className="my-1 p-0">

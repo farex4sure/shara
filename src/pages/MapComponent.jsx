@@ -27,7 +27,7 @@ const UserComponent = ({ text, onClick }) => (
 	</div>
 );
 
-const MapContainer = ({ userCoordinates, locations }) => {
+const MapContainer = ({ userCoordinates, locations, setEnterLocation }) => {
 	const apiKey = process.env.REACT_APP_GOOGLE_MAP_API;
 	const [selectedLocation, setSelectedLocation] = useState(null);
 	const [userLocation, setUserLocation] = useState(null);
@@ -36,6 +36,10 @@ const MapContainer = ({ userCoordinates, locations }) => {
 		setSelectedLocation(location);
 	};
 	const handleUserMarkerClick = (location) => {
+		if (!location) {
+			setEnterLocation(true);
+			return;
+		}
 		setUserLocation(location);
 	};
 
@@ -43,9 +47,8 @@ const MapContainer = ({ userCoordinates, locations }) => {
 		setSelectedLocation(null);
 		setUserLocation(null);
 	};
-
 	return (
-		<div style={{ height: '100vh', width: '100%' }}>
+		<div style={{ height: '92vh', width: '100%' }} className="">
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: apiKey }}
 				defaultCenter={[12.0035373, 8.5611104]}

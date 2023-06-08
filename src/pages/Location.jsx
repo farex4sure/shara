@@ -4,6 +4,7 @@ import { locations } from '../Data';
 import MapComponent from './MapComponent';
 import Geocode from 'react-geocode';
 import { useLocation } from '../hooks/useLocation';
+import { HiXCircle } from 'react-icons/hi';
 const Location = () => {
 	const [address, setAddress] = useState('');
 	const [coordinates, setCoordinates] = useState('');
@@ -37,8 +38,7 @@ const Location = () => {
 				(response) => {
 					const { lat, lng } = response.results[0].geometry.location;
 					setCoordinates({ lat, lng, address, phone, title });
-					console.log({ address, phone, title, lat, lng });
-					setEnterLocation(true);
+					setEnterLocation(false);
 					setIsLoading(false);
 				},
 				(error) => {
@@ -53,11 +53,15 @@ const Location = () => {
 	};
 	return (
 		<div className="mt-8 py-10 h-screen relative w-full">
-			<h3 className="text-center text-2xl font-semibold m-4 z-20 relative">
+			<h3 className="text-center text-xl md:text-2xl font-semibold m-4 z-20 relative w-8/12 mx-auto text-green-500">
 				Find Waste Collector
 			</h3>
-			<div className="w-full h-full fixed top-12 bottom-0">
-				<MapComponent locations={locations} userCoordinates={coordinates} />
+			<div className="w-full h-fit pt-6 fixed top-12 bottom-0">
+				<MapComponent
+					locations={locations}
+					userCoordinates={coordinates}
+					setEnterLocation={setEnterLocation}
+				/>
 			</div>
 
 			{enterLocation ? (
@@ -66,9 +70,15 @@ const Location = () => {
 					onSubmit={handleSubmit}
 				>
 					<div className="mt-2">
-						<label htmlFor="location" className="text-lg font-semibold">
-							Enter your Location:
-						</label>
+						<div className="flex justify-between">
+							<label htmlFor="location" className="text-lg font-semibold">
+								Enter your Location:
+							</label>
+							<HiXCircle
+								onClick={() => setEnterLocation(false)}
+								className="h-6 w-6 text-red-400 hover:text-red-500"
+							/>
+						</div>
 						<input
 							value={address}
 							onChange={(e) => setAddress(e.target.value)}
