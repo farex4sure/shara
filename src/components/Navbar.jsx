@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 	const [open, setOpen] = useState(false);
 	const { user } = useContext(AuthContext);
-	const name =user?.user?.name
+	const name = user?.user?.name;
 	const { logout } = useLogout();
 	return (
 		<nav
@@ -50,12 +50,12 @@ const Navbar = () => {
 						>
 							<ion-icon
 								name="close-outline"
-								className="text-[#228e01] h-8 w-8"
+								className="text-[#228e01] h-6 w-6 md:h-8 md:h-8"
 							></ion-icon>
 						</div>
 						{user ? (
 							<>
-								<div className="mt-1">
+								<div className="mt-px flex items-center justify-start">
 									<div className="flex items-center justify-center pb-1">
 										<img
 											src={user?.user?.image || UserImg}
@@ -64,7 +64,9 @@ const Navbar = () => {
 										/>
 										<div className="p-1 text-green-500">
 											<h5 className="text-lg font-bold capitalize">
-												{name?.length > 14 ? `${name?.substring(0, 15)}".."` : name}
+												{name?.length > 14
+													? `${name?.substring(0, 15)}".."`
+													: name}
 											</h5>
 											<p className="text-lg">
 												Bal: &#8358;{user?.wallet?.balance}
@@ -73,7 +75,7 @@ const Navbar = () => {
 									</div>
 									<hr className="bg-black" />
 								</div>
-								<div className="space-y-3">
+								<div className="space-y-3 devide-y-1">
 									{menuLinks.map((menu, i) => (
 										<li
 											onClick={() => setOpen(false)}
@@ -86,7 +88,7 @@ const Navbar = () => {
 											>
 												<ion-icon
 													name={menu.icon}
-													className=" h-8 w-8 m-2"
+													className=" h-8 w-8 md:h-10 md:w-10 m-2"
 												></ion-icon>
 												<p>{menu?.name}</p>
 											</a>
@@ -102,7 +104,7 @@ const Navbar = () => {
 										>
 											<ion-icon
 												name="log-out"
-												className=" h-8 w-8 m-2"
+												className=" h-8 w-8 md:h-10 md:w-10 m-2"
 											></ion-icon>
 											<span>Log out</span>
 										</p>
@@ -123,7 +125,7 @@ const Navbar = () => {
 										>
 											<ion-icon
 												name={menu.icon}
-												className=" h-8 w-8 m-2"
+												className=" h-8 w-8 md:h-10 md:w-10 m-2"
 											></ion-icon>
 											<p>{menu?.name}</p>
 										</Link>

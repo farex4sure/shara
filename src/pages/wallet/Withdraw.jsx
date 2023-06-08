@@ -11,46 +11,43 @@ const Withdraw = () => {
 	const [amount, setAmount] = useState('');
 	const [confirmPin, setConfirmPin] = useState(false);
 	const [showModal, setShowModal] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const [confirmPayment, setConfirmPayment] = useState(false);
-	const [alert, setAlert] = useState('invisible');
+	const [alert, setAlert] = useState(false);
 	const [pin, setPin] = useState('');
 
 	const balance = user.wallet?.balance;
 
-	const { checkReceiverWallet, success, error, isLoading } = useWallet();
-	// const confirmWallet = useCallback(() => {
-
-	// }, [walletNumber, wallet, setWalletName]);
+	const { checkReceiverWallet, success, error } = useWallet();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-    if (walletNumber === '' || walletNumber.length < 10) {
-      setAlert('Invalid wallet number');
+		if (walletNumber === '' || walletNumber.length < 10) {
+			setAlert('Invalid wallet number');
 			return;
 		}
 		if (amount > balance) {
 			setAlert('Not sufficient fund');
 			return;
 		}
-		if (success) {
-			setWalletName(success);
-			setConfirmPayment(true);
-		}
-		if (error) {
-			setAlert('visible');
-		}
+		setConfirmPayment(true);
 	};
 	const handleWalletNumber = async (e) => {
 		setWalletNumber(e.target.value);
+		setIsLoading(false);
+		setAlert(false);
 		if (!walletNumber === '' || walletNumber.length >= 10) {
 			const phone = addCode(walletNumber);
-      const data = await checkReceiverWallet({ phone });
-      console.log(data)
-      if (data) {
-        console.log(data, "i am a data")
-      }
+			const data = await checkReceiverWallet({ phone });
+			if (data) {
+				console.log(data, 'i am a data');
+			}
 			return;
 		}
+	};
+	const handleAmount = (e) => {
+		setAmount(e.target.value);
+		setAlert(false);
 	};
 	const handlePayment = () => {
 		setConfirmPin(true);
@@ -78,7 +75,6 @@ const Withdraw = () => {
 					maxLength={14}
 					onChange={handleWalletNumber}
 				/>
-				<p className={`text-lg text-red-500 ${alert}`}>Invalid Wallet Number</p>
 				<input
 					type="text"
 					disabled
@@ -90,10 +86,14 @@ const Withdraw = () => {
 					type="tel"
 					className="px-3 my-2 py-1.5 text-lg w-full font-normal text-gray-500 bg-clip-padding border-2 border-gray-400 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-green-600 focus:outline-none"
 					value={amount}
-					onChange={(e) => setAmount(e.target.value)}
+					onChange={handleAmount}
 				/>
-				<p className="text-center text-green-500 text-lg">{balance}</p>
-				<div className="mt-2">
+				{!alert ? (
+					<p className="text-center text-green-500 text-lg">{balance}</p>
+				) : (
+					<p className={`text-lg text-center text-red-500`}>{alert}</p>
+				)}
+				<div className="mt-1">
 					<button
 						type="submit"
 						className="bg-[#228e01] button w-full text-white py-3 my-6 rounded font-bold"
@@ -112,7 +112,7 @@ const Withdraw = () => {
 						</p>
 						<button
 							className="bg-red-500 px-8 text-white py-2 mt-2 mx-2 hover:bg-red-400 rounded-md"
-							onClick={() => navigate('/dashboard')}
+							onClick={() => navigate('/')}
 						>
 							Cancel
 						</button>
@@ -161,7 +161,7 @@ const Withdraw = () => {
 						<p className="p-2">Payment sucessfull</p>
 						<button
 							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md"
-							onClick={() => navigate('/dashboard')}
+							onClick={() => navigate('/')}
 						>
 							Ok
 						</button>

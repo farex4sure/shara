@@ -7,23 +7,33 @@ const Wallet = () => {
 	const transactions = user?.transactions;
 
 	return (
-		<div className="bg-green-200 w-full relative">
-			<div className="mx-5 pt-20 py-2 text-green-900 shadow rounded-md">
-				<p className="mx-3 font-bold">Available Balance</p>
-				<p className="text-4xl mx-3 font-extrabold my-2">
-					&#8358; {wallet?.balance || `18,420.81`}
-				</p>
-				<div className="mx-5 flex gap-5 space-x-2">
-					<button className="button">
-						<a href="./withdraw">
-							<HiPaperAirplane className="h-6 w-6 text-[]" /> SEND
-						</a>
-					</button>
-					<button className="button uppercase">
-						<a href="./receive">
-							<HiDownload className="h-6 w-6 text-[]" /> Receive
-						</a>
-					</button>
+		<div className="bg-green-200 w-full relative h-full">
+			<div className="mx-5 pt-20">
+				<div className="py-2 mt-1 text-green-900 shadow-md rounded-md border text-center">
+					<p className="mx-3 font-bold">Available Balance</p>
+					<p className="text-4xl mx-3 font-extrabold my-2">
+						&#8358; {wallet?.balance || `18,420.81`}
+					</p>
+					<div className="mx-auto flex gap-5 space-x-2 w-10/12 md:w-full">
+						<button className="button flex-1">
+							<a
+								href="./withdraw"
+								className="flex justify-center p-2 rounded-md bg-green-500 hover:bg-green-400 text-white"
+							>
+								<p className="font-semibold pr-2">SEND</p>
+								<HiPaperAirplane className="h-6 w-6 text-[]" />
+							</a>
+						</button>
+						<button className="button uppercase flex-1">
+							<a
+								href="./receive"
+								className="flex justify-center p-2 rounded-md bg-green-500 hover:bg-green-400 text-white"
+							>
+								<p className="font-semibold pr-2">Receive </p>
+								<HiDownload className="h-6 w-6 rotate" />
+							</a>
+						</button>
+					</div>
 				</div>
 				<div className="space-y-5 text-sm">
 					<p className="font-semibold pt-5 text-xl">Transaction History</p>

@@ -34,13 +34,13 @@ const Dashboard = () => {
 				<div className="mt-1 mt-5 mb-2 devide-y rounded-lg p-2 space-y-3 shadow-inset shadow-outset shadow-xl">
 					<div className="my-2 flex px-2">
 						<div className="flex-1">
-							<h1 className="text-xl font-semibold">
+							<h1 className="text-lg font-semibold">
 								Welcome{' '}
 								<span className="capitalize">
 									{name?.substring(0, 15) || 'abdulsalam'}!
 								</span>
 							</h1>
-							<p className="text-lg mt-1 text-sm">
+							<p className="text-sm mt-1 text-sm font-semibold">
 								Let take action together. 👋
 							</p>
 						</div>
@@ -53,36 +53,32 @@ const Dashboard = () => {
 					</div>
 					<h2 className="text-xl font-extrabold p-2 text-green-500">
 						Wallet:
-						<span className="text-xl mx-3 font-semibold my-2">
+						<span className="mx-3 font-semibold my-2">
 							&#8358;{user.wallet?.balance}
 						</span>
 					</h2>
 				</div>
-				<div className="h-[300px]">
-					{error ? (
-						<p className="text-lg text-red-500 text-center mt-10">{error}</p>
-					) : (
-						<YouTubeVideo videoId={videoId} />
-					)}
+				<div className="max-h-[300px]">
+					<YouTubeVideo videoId={videoId} />
 				</div>
 				<div className="text-sm my-2 space-y-2 px-1">
-					<h2 className="text-xl font-extrabold my-2 mx-2">Notifications</h2>
+					<h2 className="text-lg font-semibold my-2 mx-2">Notifications</h2>
 					<div className="rounded-lg px-4 py-3 bg-gray-50">
-						<p className="font-semibold text-sm text-green-500">Credit</p>
-						<p className="font-semibold text-green-500">
+						<p className="font-semibold text-green-500">Credit</p>
+						<p className="font-semibold text-xs text-green-500">
 							You have reward for the 5kg waste you sold
 						</p>
 					</div>
 					<div className=" rounded-lg px-4 py-3 bg-gray-50">
-						<p className="font-semibold text-sm text-green-500">New message</p>
-						<p className="font-semibold text-green-500">
+						<p className="font-semibold text-green-500">New message</p>
+						<p className="font-semibold text-xs text-green-500">
 							Share your progress with your friends to invite them on shara
 						</p>
 					</div>
 
 					<div className="rounded-lg px-4 py-3 bg-gray-50">
-						<p className="font-semibold text-lg text-green-500">Alert</p>
-						<p className="font-semibold text-sm text-green-500">
+						<p className="font-semibold text-green-500">Alert</p>
+						<p className="font-semibold text-xs text-green-500">
 							Check your progress on shara
 						</p>
 					</div>
@@ -99,7 +95,7 @@ const Dashboard = () => {
 					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
 				>
 					<FaMapMarked className="w-6 h-6 md:w-10 md:h-10 mx-auto text-[#228e01] group-hover:text-green-500" />
-					<p className="text-[#228e01] group-hover:text-green-500 text-sm font-semibold">
+					<p className="text-[#228e01] group-hover:text-green-500 text-xs font-semibold">
 						sell waste
 					</p>
 				</a>
@@ -108,7 +104,7 @@ const Dashboard = () => {
 					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
 				>
 					<FaWallet className="w-6 h-6 md:w-10 md:h-10 mx-auto text-[#228e01] group-hover:text-green-500" />
-					<p className="text-[#228e01] group-hover:text-green-500 text-sm font-semibold">
+					<p className="text-[#228e01] group-hover:text-green-500 text-xs font-semibold">
 						Reward
 					</p>
 				</a>
@@ -117,7 +113,7 @@ const Dashboard = () => {
 					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
 				>
 					<BsChatTextFill className="w-6 h-6 md:w-10 md:h-10 mx-auto text-[#228e01] group-hover:text-green-500" />
-					<p className="text-[#228e01] group-hover:text-green-500 text-sm font-semibold">
+					<p className="text-[#228e01] group-hover:text-green-500 text-xs font-semibold">
 						Chats
 					</p>
 				</a>
@@ -126,7 +122,7 @@ const Dashboard = () => {
 					className="text-center p-1 flex flex-col justify-center group cursor-pointer"
 				>
 					<FiBell className="w-6 h-6 md:w-10 md:h-10 mx-auto text-[#228e01] group-hover:text-green-500" />
-					<p className="text-[#228e01] group-hover:text-green-500 text-sm font-semibold">
+					<p className="text-[#228e01] group-hover:text-green-500 text-xs font-semibold">
 						Notifications
 					</p>
 				</a>

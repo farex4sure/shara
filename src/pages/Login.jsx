@@ -36,7 +36,7 @@ const Login = () => {
 
 	return (
 		<section className="font-serif min-h-screen bg-green-50 flex place-items-center">
-			<div className="p-5 py-8 w-full md:flex place-content-center">
+			<div className="md:p-5 py-8 w-full md:flex place-content-center">
 				<div className="hidden w-full">
 					{/* <div className="hidden md:flex  items-center justify-center space-x-5 w-full"> */}
 					<button
@@ -85,7 +85,7 @@ const Login = () => {
 							Log in
 						</h2>
 						<form
-							className="w-full m-0 flex flex-col py-4"
+							className="w-full m-0 flex flex-col py-4 text-sm md:text-lg"
 							onSubmit={handleSubmit}
 						>
 							<div className="mt-2">
@@ -128,19 +128,19 @@ const Login = () => {
 								</div>
 							)}
 
-							<div className="flex justify-between sm:text-sm  my-4 items-center text-gray-600">
+							<div className="flex justify-between sm:text-sm  md:text-lg my-4 items-center text-gray-600">
 								<label htmlFor="rememberMe">
 									<input className="mr-2 text-sm" type="checkbox" />
 									Remember me
 								</label>
 								<Link
 									to={'/forgetPassword'}
-									className="text-sm text-green-700 hover:text-green-600"
+									className="text-sm md:text-lg text-green-700 hover:text-green-600"
 								>
 									Forget Password
 								</Link>
 							</div>
-							<p className="py-2 text-gray-600 text-lg">
+							<p className="py-2 text-sm md:text-lg text-gray-600 text-lg">
 								New to Shara?
 								<Link
 									to={'/signup'}
