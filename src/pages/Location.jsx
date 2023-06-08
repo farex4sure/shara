@@ -12,8 +12,8 @@ const Location = () => {
 	const { user } = useContext(AuthContext);
 	const title = user.user?.name;
 	const phone = user.user?.phone;
-	// 'No 2, Ahmadu Bello Way, Nassarawa, Kano Nigeria';
 	const { getlocationCoordinates } = useLocation();
+	// 'No 2, Ahmadu Bello Way, Nassarawa, Kano Nigeria';
 	useEffect(() => {
 		const savedLocation = localStorage.getItem('address');
 		if (savedLocation) {
