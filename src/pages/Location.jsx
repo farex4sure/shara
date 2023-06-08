@@ -5,27 +5,22 @@ import Geocode from 'react-geocode';
 import { useLocation } from '../hooks/useLocation';
 
 const Location = () => {
-	const [address, setAddress] = useState(
-		'No 2, Ahmadu Bello Way, Nassarawa, Kano Nigeria'
-	);
+	const [address, setAddress] = useState('');
 	const [coordinates, setCoordinates] = useState([12.0035373, 8.5611104]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [enterLocation, setEnterLocation] = useState(true);
-
-	const { GetlocationCoordinates } = useLocation();
+	// 'No 2, Ahmadu Bello Way, Nassarawa, Kano Nigeria';
+	const { getlocationCoordinates } = useLocation();
 	useEffect(() => {
-		const savedLocation = localStorage.getItem('location');
-		if (!savedLocation) {
+		const savedLocation = localStorage.getItem('address');
+		if (savedLocation) {
 			setEnterLocation(false);
-			return;
+			const data = getlocationCoordinates(savedLocation);
+			if (data.result) {
+				setCoordinates(data.result);
+			}
 		}
-		const data = GetlocationCoordinates(savedLocation);
-		if (data.result) {
-			setCoordinates(data);
-			setEnterLocation(true);
-		}
-		console.log(savedLocation);
-	}, [GetlocationCoordinates]);
+	}, [getlocationCoordinates]);
 
 	Geocode.setLocationType('ROOFTOP');
 	Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAP_API);
@@ -96,6 +91,3 @@ const Location = () => {
 };
 
 export default Location;
-
-
-

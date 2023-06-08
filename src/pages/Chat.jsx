@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
+import {
+	WebChatContainer,
+	setEnableDebug,
+} from '@ibm-watson/assistant-web-chat-react';
 
 const Chat = () => {
 	const [language, setLanguage] = useState(false);
 	const handleLanguage = () => {
 		setLanguage(!language);
 	};
+	const webChatOptions = {
+		integrationID: process.env.REACT_APP_ID,
+		region: process.env.REACT_APP_REGION,
+		serviceInstanceID: process.env.REACT_APP_SID,
+	};
+	setEnableDebug(true);
 
 	return (
 		<div className="h-screen overflow-scroll relative">
@@ -74,6 +84,7 @@ const Chat = () => {
 							place order
 						</div>
 					</div>
+					<WebChatContainer config={webChatOptions} />
 					<div className="mb-1 flex justify-end mx-4">
 						<div className="w-[90%] lg:w-1/2 bg-green-500 mb-2 rounded-t-lg rounded-br-lg p-2 text-gray-200">
 							As soon as possible, Our agent are located accross each local

@@ -15,11 +15,11 @@ const AnyReactComponent = ({ text, onClick }) => (
 		<p>{text}</p>
 	</div>
 );
+
 const MapContainer = ({ userCoordinates, locations }) => {
 	const apiKey = process.env.REACT_APP_GOOGLE_MAP_API;
 	const [selectedLocation, setSelectedLocation] = useState(null);
 	const navigate = useNavigate();
-
 	const handleMarkerClick = (location) => {
 		setSelectedLocation(location);
 	};
@@ -32,17 +32,14 @@ const MapContainer = ({ userCoordinates, locations }) => {
 		<div style={{ height: '100vh', width: '100%' }}>
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: apiKey }}
-				center={userCoordinates}
+				defaultCenter={userCoordinates}
 				defaultZoom={11}
+				yesIWantToUseGoogleMapApiInternals
+				
 			>
-				<AnyReactComponent
-					lat={11.9630456}
-					lng={8.55034210353827}
-					text="My Marker"
-				/>
-				{locations.map((location) => (
+				{locations.map((location, index) => (
 					<AnyReactComponent
-						key={location.id}
+						key={index}
 						lat={location.latitude}
 						lng={location.longitude}
 						text={location.title}
