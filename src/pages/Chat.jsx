@@ -39,7 +39,7 @@ const Chat = () => {
 					></i>
 				</div>
 				<div
-					className={`absolute bg-white px-5 rounded py-3 text-green-600 text-sm right-2 top-14 mt-14 language-bar ${
+					className={`absolute bg-white px-5 rounded py-3 text-green-600 text-sm right-2 top-12 mt-14 language-bar ${
 						language ? `block` : `hidden`
 					}`}
 				>
@@ -59,6 +59,7 @@ const Chat = () => {
 					</ul>
 				</div>
 			</div>
+			<WebChatContainer config={webChatOptions} />
 		</div>
 	);
 };
