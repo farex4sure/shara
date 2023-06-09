@@ -20,7 +20,7 @@ const Dashboard = () => {
 	const location = user.user?.address || 'kano';
 	useEffect(() => {
 		wallet({ phone });
-	}, [user, phone, wallet]);
+	}, [phone, wallet]);
 	useEffect(() => {
 		getWeather(location);
 	}, [location, getWeather]);
@@ -48,26 +48,26 @@ const Dashboard = () => {
 								Let take action together. 👋
 							</p>
 						</div>
-						<div className="flex">
-							<p className="text-xl font-semibold">
-								{weather?.temp_c}
-								<sup>&deg;C</sup>
-							</p>
+						<div className="">
 							<img
 								src={weather?.condition?.icon}
 								alt={weather?.condition?.text}
-								className=""
+								className="h-6 w-6"
 							/>
+							<p className="text-lg font-semibold">
+								{weather?.temp_c}
+								<sup>&deg;C</sup>
+							</p>
 						</div>
 					</div>
 					<h2 className="text-xl font-extrabold p-2 text-green-500">
-						Wallet:
-						<span className="mx-3 font-semibold my-2">
-							&#8358;{user.wallet?.balance}
+						Points:
+						<span className="mx-1 font-semibold my-2">
+							{user.wallet?.balance}
 						</span>
 					</h2>
 				</div>
-				<div className="h-[250px] md:h-[350px]">
+				<div className="h-[300px]">
 					<YouTubeVideo videoId={videoId} />
 				</div>
 				<div className="text-sm my-2 space-y-2 px-1">

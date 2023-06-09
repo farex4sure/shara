@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useWallet } from '../../hooks/useWallet';
 import { addCode } from '../../hooks/contryCodes';
+import toast from 'react-hot-toast';
 const Withdraw = () => {
 	const { user } = useContext(AuthContext);
 	const navigate = useNavigate();
@@ -18,19 +19,28 @@ const Withdraw = () => {
 
 	const balance = user.wallet?.balance;
 
-	const { checkReceiverWallet, success, error } = useWallet();
+	const { sendMoney, checkReceiverWallet, error } = useWallet();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (walletNumber === '' || walletNumber.length < 10) {
 			setAlert('Invalid wallet number');
+			toast.error('Invalid wallet number');
 			return;
 		}
 		if (amount > balance) {
 			setAlert('Not sufficient fund');
+			toast.error('Not sufficient fund');
 			return;
 		}
-		setConfirmPayment(true);
+		const phone = addCode(walletNumber);
+		toast.loading('checking receivers account');
+		const data = await checkReceiverWallet({ phone });
+		if (data) {
+			setWalletName(data?.user?.name);
+			setConfirmPayment(true);
+			toast.dismiss();
+		}
 	};
 	const handleWalletNumber = async (e) => {
 		setWalletNumber(e.target.value);
@@ -40,7 +50,7 @@ const Withdraw = () => {
 			const phone = addCode(walletNumber);
 			const data = await checkReceiverWallet({ phone });
 			if (data) {
-				console.log(data, 'i am a data');
+				setWalletName(data?.user?.name);
 			}
 			return;
 		}
@@ -50,14 +60,32 @@ const Withdraw = () => {
 		setAlert(false);
 	};
 	const handlePayment = () => {
+		if (!walletName || !walletNumber || walletNumber) {
+			toast.loading('Inputs Error!');
+			return
+		}		
 		setConfirmPin(true);
 		setConfirmPayment(false);
+
+
 	};
 	const handlePin = () => {
-		if (pin) {
-			console.log(pin);
-			setShowModal(true);
-			setConfirmPin(false);
+		if (pin) {			
+		const data = {
+			userId: user.user?._id,
+			phone: walletNumber,
+			amount,
+			pin,
+			token: user.user?.token,
+			narration: `received ${amount} from ${user.user?.name}`,
+		};
+		const res = sendMoney({data})
+			toast.loading('transaction in progress');
+			if (res) {
+				setShowModal(true);
+				setConfirmPin(false);
+				toast.dismiss()
+			}
 		}
 		if (error) {
 			setAlert('visible');
@@ -89,7 +117,7 @@ const Withdraw = () => {
 					onChange={handleAmount}
 				/>
 				{!alert ? (
-					<p className="text-center text-green-500 text-lg">{balance}</p>
+					<p className="text-center text-green-500 text-lg">{balance} points</p>
 				) : (
 					<p className={`text-lg text-center text-red-500`}>{alert}</p>
 				)}
@@ -112,7 +140,7 @@ const Withdraw = () => {
 						</p>
 						<button
 							className="bg-red-500 px-8 text-white py-2 mt-2 mx-2 hover:bg-red-400 rounded-md"
-							onClick={() => navigate('/')}
+							onClick={() => setConfirmPayment(false)}
 						>
 							Cancel
 						</button>
@@ -159,12 +187,13 @@ const Withdraw = () => {
 							<ion-icon name="happy" size="large"></ion-icon>
 						</div>
 						<p className="p-2">Payment sucessfull</p>
-						<button
+						<a
+							href="/withdraw"
 							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md"
-							onClick={() => navigate('/')}
+							onClick={() => showModal(false)}
 						>
 							Ok
-						</button>
+						</a>
 					</div>
 				</div>
 			) : (
