@@ -141,13 +141,21 @@ OFFLINE DEMO LINK [Shara-offline](https://github.com/farex4sure/Shara_ussd) simu
 
 ## Built with
 ### Online
-  
 
 - [App-ID] - it is implemented to protect user account, providing authorization and authentication
-- [watson assistant: ] - Integrated into the app to interact with the users without the intervention of a live agent 
-- [React JS](https://reactjs.org) - JavaScript Library for user interface
+- [watson assistant AI]- Integrated into the app to interact with the users without the intervention of a live agent. 
+- [Google map api](https://cloud.mongodb.com) - To display realtime location of our agents/waste collectors
+- [weatherapi] - Live weather update
+- [React JS](https://reactjs.org) - JavaScript Library for building component base user interface
+- [Tailwind css](https://tailwindcss.com/docs/installation) - Used for styling the user interface
+- [Mongo DB](https://cloud.mongodb.com) - Database management system users
+- [Render](https://shara-api-vzrf.onrender.com) - Host the backend api
+- [Vercel](https://shara-delta.vercel.app) - Host frontend app
 
-Offline
-- [MySQL]() - Database management system used
+### Offline
+- [MySQL]() - Database management system USSD
 - [PHP] - Programming language used
 
+### Github repositories
+ FrontEnd [Shara-online](https://github.com/farex4sure/shara.git)
+ Backend [Shara-online](https://github.com/farex4sure/shara-api.git)

@@ -67,14 +67,16 @@ const Withdraw = () => {
 	};
 	const handlePin = async () => {
 		if (pin) {
-			const phone = addCode(walletNumber);
+			const receiver = addCode(walletNumber);
+			const sender = addCode(user.user?.phone);
 			const data = {
-				userId: user.user?._id,
-				phone,
+				id: user.user?._id,
+				receiver,
+				sender,
 				amount,
 				pin,
 				token: user?.token,
-				narration: `received ${amount} from ${user.user?.name}`,
+				narration: `received ${amount} point from ${user.user?.name}`,
 			};
 			toast.loading('transaction in progress');
 			const res = await sendMoney({ data });
@@ -89,6 +91,7 @@ const Withdraw = () => {
 		}
 		if (error) {
 			toast.dismiss();
+			setShowModal(false);
 			toast.error(error);
 			return;
 		}

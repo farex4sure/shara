@@ -18,6 +18,7 @@ const Dashboard = () => {
 	// const phone = user.user?.phone;
 	const name = user.user?.name;
 	const location = user.user?.address || 'kano';
+	const balance = user.wallet?.balance;
 	useEffect(() => {
 		getWeather(location);
 	}, [location, getWeather]);
@@ -59,9 +60,7 @@ const Dashboard = () => {
 					</div>
 					<h2 className="text-xl font-extrabold p-2 text-green-500">
 						Points:
-						<span className="mx-1 font-semibold my-2">
-							{user.wallet?.balance}
-						</span>
+						<span className="mx-1 font-semibold my-2">{balance}</span>
 					</h2>
 				</div>
 				<div className="h-[300px]">
