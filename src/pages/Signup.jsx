@@ -4,6 +4,7 @@ import Logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignup } from '../hooks/useSignup';
 // import axios from "axios";
+import toast from 'react-hot-toast';
 
 import { addCode } from '../hooks/contryCodes';
 const Signup = () => {
@@ -23,7 +24,9 @@ const Signup = () => {
 		const user = { name, phone: addCode(phone), password };
 		await signup(user);
 	};
-
+	if (error) {
+		toast('Here is your toast.');
+	}
 	const handleSignUp = () => {
 		setShowSignUp(true);
 		setShowLogin(false);

@@ -8,7 +8,6 @@ import {
 
 const Chat = () => {
 	const [language, setLanguage] = useState(false);
-	const [chat, setChat] = useState('');
 	const handleLanguage = () => {
 		setLanguage(!language);
 	};
@@ -98,7 +97,7 @@ const Chat = () => {
 						</div>
 					</div>
 				</div>
-				<div className="flex space-x-3 justify-around px-2 md:px-5 bg-white py-2 items-center fixed bottom-0 w-full border-y-green-500">
+				{/* <div className="flex space-x-3 justify-around px-2 md:px-5 bg-white py-2 items-center fixed bottom-0 w-full border-y-green-500">
 					<div className="md:w-[90%] flex-1">
 						<textarea
 							className=" w-full border border-green-500 rounded-xl px-5 py-1"
@@ -114,7 +113,7 @@ const Chat = () => {
 						></i>
 						<i className="fa-solid fa-microphone-lines cursor-pointer pr-2"></i>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useWallet } from '../../hooks/useWallet';
 import { addCode } from '../../hooks/contryCodes';
+import toast from 'react-hot-toast';
 const Withdraw = () => {
 	const { user } = useContext(AuthContext);
 	const navigate = useNavigate();
@@ -24,9 +25,11 @@ const Withdraw = () => {
 		e.preventDefault();
 		if (walletNumber === '' || walletNumber.length < 10) {
 			setAlert('Invalid wallet number');
+			toast('Invalid wallet number');
 			return;
 		}
 		if (amount > balance) {
+			toast('Not sufficient fund');
 			setAlert('Not sufficient fund');
 			return;
 		}
@@ -112,7 +115,7 @@ const Withdraw = () => {
 						</p>
 						<button
 							className="bg-red-500 px-8 text-white py-2 mt-2 mx-2 hover:bg-red-400 rounded-md"
-							onClick={() => navigate('/')}
+							onClick={() => navigate('/withdraw')}
 						>
 							Cancel
 						</button>
@@ -161,7 +164,7 @@ const Withdraw = () => {
 						<p className="p-2">Payment sucessfull</p>
 						<button
 							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md"
-							onClick={() => navigate('/')}
+							onClick={() => navigate('/withdraw')}
 						>
 							Ok
 						</button>

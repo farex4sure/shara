@@ -1,47 +1,118 @@
 import React, { useState } from 'react';
-import FullCalendar from '@fullcalendar/react'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
 import { HiXCircle } from 'react-icons/hi';
+import { ScheduleMeeting } from 'react-schedule-meeting';
 
-const events = [
-	{ title: 'pickup', date: '2023-06-03' },
-	{ title: 'Start project', date: '2023-06-05' },
-	{ title: 'Discuss ideas', date: '2023-06-06' },
-	{ title: 'Start building', date: '2023-06-07' },
-	{ title: 'Test product', date: '2023-06-08' },
-	{ title: 'Submit project', date: '2023-06-9' },
-	{ title: 'Pick up', date: '2023-06-17' },
-	{ title: 'Submit project', date: '2023-06-11' },
-	{ title: 'Pick up', date: '2023-06-24' },
-	{ title: 'Pick up', date: '2023-07-08' },
-	{ title: 'Pick up', date: '2023-07-19' },
-	{ title: 'Pick up', date: '2023-08-29' },
-	{ title: 'Pick up', date: '2023-08-07' },
-	{ title: 'Pick up', date: '2023-09-19' },
-	{ title: 'Pick up', date: '2023-09-26' },
-	{ title: 'Pick up', date: '2023-10-17' },
+const availableTimeSlots = [
+	{
+		id: 'pickup',
+		startTime: `Sat Jun 03 2023 09:00:00 GMT+0100 (West Africa Standard Time)`,
+		endTime: `Sat Jun 03 2023 17:00:00 GMT+0100 (West Africa Standard Time)`,
+	},
+	{
+		id: 'pickup',
+		startTime: `Sat Jun 10 2023 15:00:00 GMT+0100 (West Africa Standard Time)`,
+		endTime: `Sat Jun 10 2023 17:00:00 GMT+0100 (West Africa Standard Time)`,
+	},
+	{
+		id: 'pickup',
+		startTime: 'Mon Jun 05 2023 14:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Mon Jun 05 2023 17:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'Start project',
+		startTime: 'Tue Jun 06 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Tue Jun 06 2023 17:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'Discuss ideas',
+		startTime: 'Wed Jun 07 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Wed Jun 07 2023 17:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'Start building',
+		startTime: 'Thu Jun 08 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Thu Jun 08 2023 17:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'Test product',
+		startTime: 'Fri Jun 09 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Fri Jun 09 2023 17:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'Submit project',
+		startTime: 'Sat Jun 19 2023 17:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Sat Jun 19 2023 17:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Sun Sep 11 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Sun Sep 11 2023 10:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Sat Jun 24 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Sat Jun 24 2023 10:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Sat Jul 08 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Sat Jul 08 2023 10:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Wed Jul 19 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Wed Jul 19 2023 10:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Tue Aug 29 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Tue Aug 29 2023 12:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Mon Aug 07 2023 10:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Mon Aug 07 2023 12:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Mon Aug 19 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Mon Aug 19 2023 12:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Mon Aug 26 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Mon Aug 26 2023 11:00:00 GMT+0100 (West Africa Standard Time)',
+	},
+	{
+		id: 'pickup',
+		startTime: 'Mon Aug 17 2023 09:00:00 GMT+0100 (West Africa Standard Time)',
+		endTime: 'Mon Aug 17 2023 12:00:00 GMT+0100 (West Africa Standard Time)',
+	},
 ];
 
 const Calendar = () => {
 	const [showdate, setShowdate] = useState(false);
-
-	const handleDateClick = (arg) => {
-		setShowdate(arg.dateStr);
-		console.log(arg);
+	const handleTimeslotClicked = (startTimeEventEmit) => {
+		// setShowdate(startTimeEventEmit);
+		console.log(startTimeEventEmit);
+		startTimeEventEmit.resetDate();
+		startTimeEventEmit.resetSelectedTimeState();
+		// alert(`Time selected:${startTimeEventEmit}`);
 	};
 	return (
 		<div className="p-1 mt-8 md:mx-2 py-10 h-screen relative">
 			<h3 className="text-center text-xl md:text-2xl font-semibold m-4 z-20 relative w-8/12 mx-auto text-green-500">
 				Waste Collection Schedule
 			</h3>
-			<div className="text-sm md:text-lg">
-				<FullCalendar
-					plugins={[dayGridPlugin, interactionPlugin]}
-					initialView="dayGridMonth"
-					events={events}
-					dateClick={handleDateClick}
-					// eventContent={renderEventContent}
+			<div>
+				<ScheduleMeeting
+					borderRadius={10}
+					primaryColor="#228e01"
+					eventDurationInMinutes={30}
+					availableTimeslots={availableTimeSlots}
+					selectedDateDayTitleFormatString="cccc, LLLL do"
+					startTimeFormatString="h:mm a"
+					onStartTimeSelect={handleTimeslotClicked}
 				/>
 			</div>
 			{showdate ? (

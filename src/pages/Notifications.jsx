@@ -6,7 +6,7 @@ const Notifications = () => {
 			<h3 className="text-center text-xl md:text-2xl font-semibold m-4 mt-10 z-20 relative w-8/12 mx-auto text-green-500">
 				Notifications
 			</h3>
-			<div className="space-y-2 px-px md:px-2 text-sm">
+			<div className="space-y-2 px-px md:px-2 text-sm md:text-lg">
 				<div className="bg-white rounded-lg px-2 md:px-4 py-5">
 					<div className="flex justify-between items-center">
 						<p className="font-semibold text-red-500">-1,000.00</p>
