@@ -43,6 +43,7 @@ const Withdraw = () => {
 			toast.dismiss();
 		}
 		if (error) {
+			toast.dismiss();
 			toast.error(error);
 		}
 	};
