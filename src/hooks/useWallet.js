@@ -98,6 +98,7 @@ export const useWallet = () => {
 			.then((data) => {
 				console.log(data);
 				setSuccess(data.message);
+				setLoading(false);
 				return data;
 			})
 			.catch((error) => {

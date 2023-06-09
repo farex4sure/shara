@@ -66,28 +66,29 @@ const Withdraw = () => {
 		toast.dismiss();
 	};
 	const handlePin = async () => {
-		if (pin) {
-			const receiver = addCode(walletNumber);
-			const sender = addCode(user.user?.phone);
-			const data = {
-				id: user.user?._id,
-				receiver,
-				sender,
-				amount,
-				pin,
-				token: user?.token,
-				narration: `received ${amount} point from ${user.user?.name}`,
-			};
-			toast.loading('transaction in progress');
-			const res = await sendMoney({ data });
-			console.log(data);
-			if (res) {
-				console.log(res);
-				setShowModal(true);
-				setConfirmPin(false);
-				toast.dismiss();
-				return;
-			}
+		if (!pin) {
+			toast.error('Please enter 1234 as your pin');
+			return;
+		}
+		const receiver = addCode(walletNumber);
+		const sender = addCode(user.user?.phone);
+		const data = {
+			id: user.user?._id,
+			receiver,
+			sender,
+			amount,
+			pin,
+			token: user?.token,
+			narration: `received ${amount} point from ${user.user?.name}`,
+		};
+		toast.loading('Transaction in progress');
+		const res = await sendMoney({ data });
+		if (res) {
+			console.log(res);
+			setShowModal(true);
+			setConfirmPin(false);
+			toast.dismiss();
+			return;
 		}
 		if (error) {
 			toast.dismiss();
@@ -103,7 +104,7 @@ const Withdraw = () => {
 	};
 	return (
 		<div className="p-1 mt-8 mx-2 py-10 min-h-screen relative">
-			<h3 className="text-center text-xl md:text-2xl font-semibold m-4 mt-10 z-20 relative w-8/12 mx-auto text-green-500">
+			<h3 className="text-center text-xl md:text-2xl font-semibold m-4 mt-6 z-20 relative w-8/12 mx-auto text-green-500">
 				SEND POINT
 			</h3>
 			<form onSubmit={handleSubmit}>
@@ -145,7 +146,7 @@ const Withdraw = () => {
 			</form>
 			{confirmPayment ? (
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
-					<div className="text-center text-lg bg-green-50 w-10/12 p-4 mx-auto rounded-md shadow-md">
+					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md">
 						<h5 className="font-semibold text-lg mt-2">Confirm payment</h5>
 						<p className="my-1 p-0">
 							You are about to send {amount}&#8358; to {walletName}
@@ -169,7 +170,7 @@ const Withdraw = () => {
 			)}
 			{confirmPin ? (
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
-					<div className="text-center text-lg bg-green-50 w-72 p-4 mx-auto rounded-md shadow-md relative">
+					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md relative">
 						<h5 className="font-semibold text-lg mt-2">Input Your Pin</h5>
 						<HiXCircle
 							onClick={() => handleCloseConfirmPin}
@@ -182,9 +183,11 @@ const Withdraw = () => {
 							value={pin}
 							onChange={(e) => setPin(e.target.value)}
 						/>
-						<p className={`text-lg text-red-500 ${alert}`}>
-							Pin is not correct
-						</p>
+						{error ? (
+							<p className={`text-sm text-red-500`}>{error}</p>
+						) : (
+							<p className="text-sm text-green-500">Enter 1234 as your pin</p>
+						)}
 						<button
 							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md"
 							onClick={handlePin}
@@ -198,7 +201,7 @@ const Withdraw = () => {
 			)}
 			{showModal ? (
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
-					<div className="text-center text-lg bg-green-50 w-72 p-4 mx-auto rounded-md shadow-md">
+					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md">
 						<HiXCircle
 							onClick={() => setConfirmPin(false)}
 							className="h-6 w-6 text-red-400 hover:text-red-500"
