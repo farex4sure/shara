@@ -1,71 +1,134 @@
-# Getting Started with Create React App
+# Learncha
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+_Read this in other languages: [English](README.md), [한국어](./docs/README.ko.md), [português](./docs/README.pt_br.md), [中文](./docs/README.zh.md)._ 
 
-### `npm start`
+## Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Learncha](#learncha)
+  - [Contents](#contents)
+  - [Short description.](#short-description)
+    - [What's the problem?](#whats-the-problem)
+    - [How can technology help?](#how-can-technology-help)
+    - [The idea](#the-idea)
+  - [Demo video](#demo-video)
+  - [The architecture](#the-architecture)
+  - [Long description](#long-description)
+    - [LEARNCHA](#learncha-1)
+    - [DID YOU KNOW?](#did-you-know)
+    - [The Problem](#the-problem)
+    - [SOLUTION](#solution)
+    - [Conclusion](#conclusion)
+  - [Project roadmap](#project-roadmap)
+        - [Learncha currently does the following:](#learncha-currently-does-the-following)
+      - [it currently runs on IBM Cloud Foundary.](#it-currently-runs-on-ibm-cloud-foundary)
+      - [See below for our proposed schedule on next steps after Call for Code 2021 submission.](#see-below-for-our-proposed-schedule-on-next-steps-after-call-for-code-2021-submission)
+  - [Live demo](#live-demo)
+  - [Built with](#built-with)
+    - [Online](#online)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Short description.
+Learncha is an online and offline learning resources and a more immersive learning platform for kids using gaming to teach children in remote communities on climate and at same time have access to equitable educational tools and STEM games to enhance outside classroom learning
+### What's the problem?
 
-### `npm test`
+ - Nigeria now has about 20 million out of school children according to the latest global data on out of school children by the United Nations Educational Scientific and Cultural Organization (UNESCO). According to UNESCO Institute for Statistic (UIS) and Global Education Monetary (GEM) report the education deprivation in Nigeria is driven by economic barriers, climatic and socio cultural norms and practices especially in poor marginalized communities.
+ 
+- The education deprivation in northern Nigeria is driven by various factors, including economic barriers, climatic, socio-cultural norms and practices that 
+discourage attendance in formal education, especially for girls.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### How can technology help?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Access to quality education for children is deprived by economic barrier, climatic and socio cultural norms and practices. With technology the barriers to learning for kids will be bridged and the overall learning experience will be increased for outside classroom. This will be a milestone in changing overall the access to quality of education in disadvantaged remote communities
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### The idea
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Learncha is an online and offline learning resources and a more immersive learning platform for kids using gaming to teach children in remote communities on climate and at same time have access to equitable educational tools and STEM games to enhance outside classroom learning
 
-### `npm run eject`
+## Demo video
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+[Watch the video](https://www.youtube.com/watch?v=hI54VopbpZI)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## The architecture
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[Video transcription/translation app](https://github.com/CaptRaven/LEARNCHA/blob/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. The user navigates to the site 
+2. the platform is hosted on cloudinary
+3. IBM TWC fetches weather information
+4. PostgreSQL is used for database management.
 
-## Learn More
+## Long description
+### LEARNCHA
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### DID YOU KNOW?
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+According to UNICEF Even though primary education is officially free and compulsory, about 10.5 million of the country’s children aged 5-14 years are not in school ?!
+The education deprivation in northern Nigeria is driven by various factors, including economic barriers, climatic, socio-cultural norms and practices that discourage attendance in formal education, especially for girls.
 
-### Code Splitting
+[Learncha website](https://learncha.vercel.app)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### The Problem
 
-### Analyzing the Bundle Size
+The challenge faced by poor, remote and marginalised communities in Nigeria mostly impacted by climatic and socio factors in acessing sustainanable and equitable access to Educational and learning resources.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+### SOLUTION
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+We built a real time software LEARNCHA that provides an online and offline learning resources and a more immersive learning platform for kids using gaming to teach children in remote communities on climate and at same time have access to equitable educational tools and STEM games to enhance outside classroom learning. 
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Conclusion
 
-### Deployment
+OUR SOLUTION LEARNCHA that provides an online and offline learning resources and a more immersive learning platform for kids using gaming to teach children in remote communities on climate and at same time have access to equitable educational tools and STEM games to enhance outside classroom learning. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<!-- [More detail is available here](./docs/DESCRIPTION.md) -->
 
-### `npm run build` fails to minify
+## Project roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# shara
+##### Learncha currently does the following:
+- online and offline learning resources
+- immersive learning platform for kids using gaming to teach children in remote communities on climate,
+  the games include:
+  - 4 Pics One Word
+  - Memory Boxes
+  - Math And Climate
+ - to enhance child learning experience
+- A climate challenge can be created and get people around the world to join and solve climate problems around the world.
+-Dictionary platform to check meaning of words and learn new words
+-Quiz platform to help children answer trivia questions and earn sharable points
+-It also has the book platform which has readable contents ranging from grade 1-6
+#### it currently runs on IBM Cloud Foundary.
+#### See below for our proposed schedule on next steps after Call for Code 2021 submission.
+
+![Roadmap](./images/roadmap.png)
+
+
+## Live demo
+
+You can find a running system to test at [learncha.vercel.app](https://learncha.vercel.app).
+OFFLINE DEMO LINK [learncha-offline](https://github.com/farex4sure/learncha_ussd) simulator sandbox-(https://simulator.africastalking.com/) USSD CODE-*384*220022#
+[Android APK file] - (https://drive.google.com/drive/folders/1PEd1w896QDc1zdrMJEORP88QU2eQbE8m)
+
+
+See the "long description" field in our submission (not in this repo) for the log-in credentials.
+
+## Built with
+### Online
+  
+- [IBM Cloud Foundary](https://www.ibm.com/sa-en/cloud/cloud-foundry) - Used for hosting
+- [IBM The Weather Company](https://www.ibm.com/products/weather-company-data-packages) - Weather API used for climate challenge
+- [PostgreSQL](https://www.postgresql.org/) - Database management system
+- [Cloudinary](https://cloudinary.com/documentation) - Object Storage
+- [FASTAPI](https://fastapi.tiangolo.com/) - Python Web API used 
+- [Text-To-Speech](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API) - API used for text to speech
+- [Speech-Recognition](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API) - API used for speech recognition
+- [React JS](https://reactjs.org) - JavaScript Library for user interface
+
+Offline
+- [trivia API](https://the-trivia-api.com/) - API used for Trivia quiz
+- [Dictionary API](https://api.dictionaryapi.dev/api/v2/entries/en/word) - Used to fetch meaning of words
+- [MySQL]() - Database management system used
+- [Thesaurus API](https://api.api-ninjas.com/v1/thesaurus?word=<word>) - APi used to fetch Thesaurus
+
