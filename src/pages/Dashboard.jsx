@@ -14,13 +14,10 @@ const Dashboard = () => {
 	const videoId = videos[Math.floor(Math.random() * videos.length)];
 	const { user } = useContext(AuthContext);
 	const { getWeather, weather } = useWeather();
-	const { wallet, loading, error } = useWallet();
-	const phone = user.user?.phone;
+	const { loading, error } = useWallet();
+	// const phone = user.user?.phone;
 	const name = user.user?.name;
 	const location = user.user?.address || 'kano';
-	useEffect(() => {
-		wallet({ phone });
-	}, [phone, wallet]);
 	useEffect(() => {
 		getWeather(location);
 	}, [location, getWeather]);

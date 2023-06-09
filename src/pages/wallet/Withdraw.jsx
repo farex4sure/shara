@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useWallet } from '../../hooks/useWallet';
 import { addCode } from '../../hooks/contryCodes';
+import { HiXCircle } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 const Withdraw = () => {
 	const { user } = useContext(AuthContext);
@@ -41,59 +42,66 @@ const Withdraw = () => {
 			setConfirmPayment(true);
 			toast.dismiss();
 		}
+		if (error) {
+			toast.error(error);
+		}
 	};
 	const handleWalletNumber = async (e) => {
 		setWalletNumber(e.target.value);
 		setIsLoading(false);
 		setAlert(false);
-		if (!walletNumber === '' || walletNumber.length >= 10) {
-			const phone = addCode(walletNumber);
-			const data = await checkReceiverWallet({ phone });
-			if (data) {
-				setWalletName(data?.user?.name);
-			}
-			return;
-		}
 	};
 	const handleAmount = (e) => {
 		setAmount(e.target.value);
 		setAlert(false);
 	};
 	const handlePayment = () => {
-		if (!walletName || !walletNumber || walletNumber) {
+		if (!walletName || !walletNumber || !walletNumber) {
 			toast.loading('Inputs Error!');
-			return
-		}		
+			return;
+		}
 		setConfirmPin(true);
 		setConfirmPayment(false);
-
-
+		toast.dismiss();
 	};
-	const handlePin = () => {
-		if (pin) {			
-		const data = {
-			userId: user.user?._id,
-			phone: walletNumber,
-			amount,
-			pin,
-			token: user.user?.token,
-			narration: `received ${amount} from ${user.user?.name}`,
-		};
-		const res = sendMoney({data})
+	const handlePin = async () => {
+		if (pin) {
+			const phone = addCode(walletNumber);
+			const data = {
+				userId: user.user?._id,
+				phone,
+				amount,
+				pin,
+				token: user?.token,
+				narration: `received ${amount} from ${user.user?.name}`,
+			};
 			toast.loading('transaction in progress');
+			const res = await sendMoney({ data });
+			console.log(data);
 			if (res) {
+				console.log(res);
 				setShowModal(true);
 				setConfirmPin(false);
-				toast.dismiss()
+				toast.dismiss();
+				return;
 			}
 		}
 		if (error) {
-			setAlert('visible');
+			toast.dismiss();
+			toast.error(error);
+			return;
 		}
+	};
+
+	const handleCloseConfirmPin = () => {
+		setConfirmPin(false);
+		toast.dismiss();
 	};
 	return (
 		<div className="p-1 mt-8 mx-2 py-10 min-h-screen relative">
-			<h3 className="text-center text-2xl font-semibold m-4">Make Payment</h3>
+			<h3 className="text-center text-xl md:text-2xl font-semibold m-4 mt-10 z-20 relative w-8/12 mx-auto text-green-500">
+				SEND POINT
+			</h3>
 			<form onSubmit={handleSubmit}>
 				<h5 className="font-semibold text-lg">Enter Wallet Number</h5>
 				<input
@@ -157,8 +165,12 @@ const Withdraw = () => {
 			)}
 			{confirmPin ? (
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
-					<div className="text-center text-lg bg-green-50 w-72 p-4 mx-auto rounded-md shadow-md">
+					<div className="text-center text-lg bg-green-50 w-72 p-4 mx-auto rounded-md shadow-md relative">
 						<h5 className="font-semibold text-lg mt-2">Input Your Pin</h5>
+						<HiXCircle
+							onClick={() => handleCloseConfirmPin}
+							className="h-6 w-6 text-red-400 hover:text-red-500 absolute right-2 top-2 z-10 cursor-pointer"
+						/>
 						<input
 							type="number"
 							max="4"
@@ -183,6 +195,10 @@ const Withdraw = () => {
 			{showModal ? (
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
 					<div className="text-center text-lg bg-green-50 w-72 p-4 mx-auto rounded-md shadow-md">
+						<HiXCircle
+							onClick={() => setConfirmPin(false)}
+							className="h-6 w-6 text-red-400 hover:text-red-500"
+						/>
 						<div className="text-yellow-300">
 							<ion-icon name="happy" size="large"></ion-icon>
 						</div>

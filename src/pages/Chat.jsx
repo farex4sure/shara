@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import React, { useState } from 'react';
+// import { AuthContext } from '../context/AuthContext';
 
 import {
 	WebChatContainer,
@@ -12,8 +12,8 @@ const Chat = () => {
 		setLanguage(!language);
 	};
 
-	const { user } = useContext(AuthContext);
-	const name = user.user?.name;
+	// const { user } = useContext(AuthContext);
+	// const name = user.user?.name;
 	const webChatOptions = {
 		integrationID: process.env.REACT_APP_ID,
 		region: process.env.REACT_APP_REGION,

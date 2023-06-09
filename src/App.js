@@ -38,7 +38,7 @@ function App() {
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/wallet" element={<Wallet />} />
 						<Route path="/receive" element={<Receive />} />
-						<Route path="/withdraw" element={<Withdraw />} />
+						<Route path="/sendpoint" element={<Withdraw />} />
 						<Route path="/chat" element={<Chat />} />
 						<Route path="/calendar" element={<Calendar />} />
 						<Route path="/pay/:amount" element={<Pay />} />

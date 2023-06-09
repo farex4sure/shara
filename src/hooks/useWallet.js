@@ -92,19 +92,20 @@ export const useWallet = () => {
 	const sendMoney = (data) => {
 		setLoading(true);
 		setError(false);
-		axios
+		const res = axios
 			.post(`${BASE_API_URL}/wallet/send`, data)
 			.then((res) => res.data)
 			.then((data) => {
 				console.log(data);
-				setLoading(false);
 				setSuccess(data.message);
+				return data;
 			})
 			.catch((error) => {
 				console.log(error);
 				setLoading(false);
 				setError(error ? error.response?.data.error || error.message : error);
 			});
+		return res;
 	};
 
 	// // receive money

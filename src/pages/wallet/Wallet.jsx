@@ -17,7 +17,7 @@ const Wallet = () => {
 					<div className="mx-auto flex gap-5 space-x-2 w-10/12 md:w-full">
 						<button className="button flex-1">
 							<a
-								href="./withdraw"
+								href="./sendpoint"
 								className="flex justify-center p-2 rounded-md bg-green-500 hover:bg-green-400 text-white"
 							>
 								<p className="font-semibold pr-2">SEND</p>
