@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useWallet } from '../../hooks/useWallet';
 import { addCode } from '../../hooks/contryCodes';
 import { HiXCircle } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 const Withdraw = () => {
 	const { user } = useContext(AuthContext);
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const [walletNumber, setWalletNumber] = useState('');
 	const [walletName, setWalletName] = useState('');
 	const [amount, setAmount] = useState('');
