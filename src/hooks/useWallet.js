@@ -49,17 +49,11 @@ export const useWallet = () => {
 					// If all properties have the same values, the objects are the same
 					return true;
 				};
-				const areEqual = compareObjects(user.user, data?.user);
+				const areEqual = compareObjects(user, data);
 				console.log(areEqual);
 				if (!areEqual) {
-					if (user.user._id === data.wallet.userId) {
-						user.wallet = data.wallet;
-						user.transaction = data.transaction;
-					}
-					localStorage.setItem('sharauser', JSON.stringify(user));
-					console.log(user.wallet);
-					console.log(data?.wallet);
-					console.log(data);
+					localStorage.setItem('sharauser', JSON.stringify({...data, token: user.token}));
+					console.log("areNotEqual");
 				}
 				// update loading state
 				setLoading(false);
@@ -91,6 +85,7 @@ export const useWallet = () => {
 		return data;
 	};
 	// // send money
+	// data = { id: userId, phone, amount, pin, token, narration }
 	const sendMoney = (data) => {
 		setLoading(true);
 		setError(false);
@@ -99,10 +94,6 @@ export const useWallet = () => {
 			.then((res) => res.data)
 			.then((data) => {
 				console.log(data);
-				// if (user.user._id === data.wallet.userId) {
-				//    user.wallet = data.wallet;
-				//    }
-				//  localStorage.setItem("sharauser", JSON.stringify(user));
 				setLoading(false);
 				setSuccess(data.message);
 			})

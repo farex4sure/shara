@@ -63,19 +63,22 @@ const Withdraw = () => {
 		if (!walletName || !walletNumber || walletNumber) {
 			toast.loading('Inputs Error!');
 			return
-		}
-		const data = sendMoney({walletName, walletNumber, walletNumber})
-		toast.loading('checking receivers account');
+		}		
 		setConfirmPin(true);
 		setConfirmPayment(false);
 
 
 	};
 	const handlePin = () => {
-		if (pin) {
-			console.log(pin);
-			setShowModal(true);
-			setConfirmPin(false);
+		if (pin) {			
+		data = { userId: user.user?._id, phone:walletNumber, amount, pin, token, narration: `received ${amount} from ${}` };
+		const res = sendMoney({data})
+			toast.loading('transaction in progress');
+			if (res) {
+				setShowModal(true);
+				setConfirmPin(false);
+				toast.dismiss()
+			}
 		}
 		if (error) {
 			setAlert('visible');
