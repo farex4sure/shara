@@ -71,7 +71,14 @@ const Withdraw = () => {
 	};
 	const handlePin = () => {
 		if (pin) {			
-		data = { userId: user.user?._id, phone:walletNumber, amount, pin, token, narration: `received ${amount} from ${}` };
+		const data = {
+			userId: user.user?._id,
+			phone: walletNumber,
+			amount,
+			pin,
+			token: user.user?.token,
+			narration: `received ${amount} from ${user.user?.name}`,
+		};
 		const res = sendMoney({data})
 			toast.loading('transaction in progress');
 			if (res) {
