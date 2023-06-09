@@ -70,9 +70,7 @@ const Navbar = () => {
 													? `${reduceName(name?.substring(0, 15))}..`
 													: name}
 											</h5>
-											<p className="text-lg">
-												Bal: &#8358;{user?.wallet?.balance}
-											</p>
+											<p className="text-lg">Points: {user?.wallet?.balance}</p>
 										</div>
 									</div>
 									<hr className="bg-black" />

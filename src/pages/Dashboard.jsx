@@ -61,9 +61,9 @@ const Dashboard = () => {
 						</div>
 					</div>
 					<h2 className="text-xl font-extrabold p-2 text-green-500">
-						Wallet:
-						<span className="mx-3 font-semibold my-2">
-							&#8358;{user.wallet?.balance}
+						Points:
+						<span className="mx-1 font-semibold my-2">
+							{user.wallet?.balance}
 						</span>
 					</h2>
 				</div>

@@ -28,12 +28,39 @@ export const useWallet = () => {
 			.then((res) => res.data)
 			.then((data) => {
 				setSuccess(data?.user?.name);
-				console.log(data);
-				if (user.user._id === data.wallet.userId) {
-					user.wallet = data.wallet;
-					user.transaction = data.transaction;
+				const compareObjects = (obj1, obj2) => {
+					// Get the keys of both objects
+					const keys1 = Object.keys(obj1);
+					const keys2 = Object.keys(obj2);
+
+					// Check if the number of properties is the same
+					if (keys1.length !== keys2.length) {
+						return false;
+					}
+
+					// Iterate over the keys
+					for (let key of keys1) {
+						// Compare the values of the properties
+						if (obj1[key] !== obj2[key]) {
+							return false;
+						}
+					}
+
+					// If all properties have the same values, the objects are the same
+					return true;
+				};
+				const areEqual = compareObjects(user.user, data?.user);
+				console.log(areEqual);
+				if (!areEqual) {
+					if (user.user._id === data.wallet.userId) {
+						user.wallet = data.wallet;
+						user.transaction = data.transaction;
+					}
+					localStorage.setItem('sharauser', JSON.stringify(user));
+					console.log(user.wallet);
+					console.log(data?.wallet);
+					console.log(data);
 				}
-				localStorage.setItem('sharauser', JSON.stringify(user));
 				// update loading state
 				setLoading(false);
 			})
@@ -50,19 +77,18 @@ export const useWallet = () => {
 			setError('invalid wallet number.');
 			setLoading(false);
 		}
-		axios
+		const data = await axios
 			.post(`${BASE_API_URL}/wallet/check-wallet`, phone)
 			.then((res) => res.data)
 			.then((data) => {
-				setSuccess(data?.user?.name);
-				// update loading state
-				setLoading(false);
+				setSuccess(true);
 				return data;
 			})
 			.catch((error) => {
 				setError(error ? error.response?.data.error || error.message : error);
 				setLoading(false);
 			});
+		return data;
 	};
 	// // send money
 	const sendMoney = (data) => {

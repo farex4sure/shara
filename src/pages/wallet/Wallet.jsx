@@ -10,9 +10,9 @@ const Wallet = () => {
 		<div className="bg-green-200 w-full relative h-full">
 			<div className="mx-5 pt-20">
 				<div className="py-2 mt-1 text-green-900 shadow-md rounded-md border text-center">
-					<p className="mx-3 font-bold">Available Balance</p>
+					<p className="mx-3 font-bold">Available Points</p>
 					<p className="text-4xl mx-3 font-extrabold my-2">
-						&#8358; {wallet?.balance || `18,420.81`}
+						{wallet?.balance || `18,420.81`}
 					</p>
 					<div className="mx-auto flex gap-5 space-x-2 w-10/12 md:w-full">
 						<button className="button flex-1">
