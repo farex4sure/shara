@@ -50,10 +50,13 @@ export const useWallet = () => {
 					return true;
 				};
 				const areEqual = compareObjects(user, data);
-				console.log(areEqual);
 				if (!areEqual) {
-					localStorage.setItem('sharauser', JSON.stringify({...data, token: user.token}));
-					console.log("areNotEqual");
+					console.log(user);
+					console.log({ ...data, token: user.token });
+					localStorage.setItem(
+						'sharauser',
+						JSON.stringify({ ...data, token: user.token })
+					);
 				}
 				// update loading state
 				setLoading(false);
