@@ -35,7 +35,7 @@ const Withdraw = () => {
 			return;
 		}
 		const phone = addCode(walletNumber);
-		toast.loading('checking receivers account');
+		toast.loading('Checking receivers account');
 		const data = await checkReceiverWallet({ phone });
 		if (data) {
 			setWalletName(data?.user?.name);
@@ -57,7 +57,7 @@ const Withdraw = () => {
 		setAlert(false);
 	};
 	const handlePayment = () => {
-		if (!walletName || !walletNumber || !walletNumber) {
+		if (!walletName || !walletNumber || !amount) {
 			toast.loading('Inputs Error!');
 			return;
 		}
