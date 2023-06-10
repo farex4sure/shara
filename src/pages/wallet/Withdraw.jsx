@@ -72,8 +72,8 @@ const Withdraw = () => {
 		}
 		const receiver = addCode(walletNumber);
 		const sender = addCode(user.user?.phone);
+		console.log(sender)
 		const data = {
-			id: user.user?._id,
 			receiver,
 			sender,
 			amount,
