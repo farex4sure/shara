@@ -219,7 +219,7 @@ const Withdraw = () => {
 					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md relative">
 						<HiXCircle
 							onClick={() => handleCloseModal()}
-							className="h-6 w-6 text-red-400 hover:text-red-500 absolute right-2 top-2 z-10 cursor-pointer"
+							className="h-6 w-6 text-red-400 hover:text-red-500 absolute right-2 z-10 top-2 cursor-pointer"
 						/>
 						<div className="text-yellow-300">
 							<ion-icon name="happy" size="large"></ion-icon>
