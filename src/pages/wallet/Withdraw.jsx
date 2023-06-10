@@ -20,7 +20,7 @@ const Withdraw = () => {
 
 	const balance = user.wallet?.balance;
 
-	const { checkReceiverWallet, error } = useWallet();
+	const { sendMoney, checkReceiverWallet, error } = useWallet();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -81,26 +81,28 @@ const Withdraw = () => {
 			narration: `received ${amount} point from ${user.user?.name}`,
 		};
 		toast.loading('Transaction in progress');
-		// const res = await sendMoney({ data });
-		// if (res) {
-		// 	console.log(res);
-		// 	setShowModal(true);
-		// 	setConfirmPin(false);
-		// 	toast.dismiss();
-		// 	return;
-		// }
-		// if (error) {
-		// 	toast.dismiss();
-		// 	setShowModal(false);
-		// 	toast.error(error);
-		// 	return;
-		// }
-		setTimeout(() => {
-			toast.dismiss();
+		// comment from here
+		const res = await sendMoney(data);
+		if (res) {
+			console.log(res);
 			setShowModal(true);
 			setConfirmPin(false);
-			toast.success('Point sent successfully');
-		}, [100]);
+			toast.dismiss();
+			return;
+		}
+		if (error) {
+			toast.dismiss();
+			setShowModal(false);
+			toast.error(error);
+			return;
+		}
+		// end comment  here
+		// setTimeout(() => {
+		// 	toast.dismiss();
+		// 	setShowModal(true);
+		// 	setConfirmPin(false);
+		// 	toast.success('Point sent successfully');
+		// }, [400]);
 	};
 
 	const handleCloseConfirmPin = () => {
@@ -153,15 +155,13 @@ const Withdraw = () => {
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
 					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md">
 						<h5 className="font-semibold text-lg mt-2">Confirm payment</h5>
+						<HiXCircle
+							onClick={() => setConfirmPayment(false)}
+							className="h-6 w-6 text-red-400 hover:text-red-500 absolute right-2 top-2 z-10 cursor-pointer"
+						/>
 						<p className="my-1 p-0">
 							You are about to send {amount}&#8358; to {walletName}
 						</p>
-						<button
-							className="bg-red-500 px-8 text-white py-2 mt-2 mx-2 hover:bg-red-400 rounded-md"
-							onClick={() => setConfirmPayment(false)}
-						>
-							Cancel
-						</button>
 						<button
 							className="bg-green-500 px-8 text-white py-2 mt-2 mx-2 hover:bg-green-400 rounded-md"
 							onClick={handlePayment}
@@ -209,14 +209,14 @@ const Withdraw = () => {
 					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md">
 						<HiXCircle
 							onClick={() => setConfirmPin(false)}
-							className="h-6 w-6 text-red-400 hover:text-red-500"
+							className="h-6 w-6 text-red-400 hover:text-red-500 absolute right-2 top-2 z-10 cursor-pointer"
 						/>
 						<div className="text-yellow-300">
 							<ion-icon name="happy" size="large"></ion-icon>
 						</div>
 						<p className="p-2">Payment sucessfull</p>
 						<a
-							href="/withdraw"
+							href="/sendpoint"
 							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md"
 							onClick={() => showModal(false)}
 						>
