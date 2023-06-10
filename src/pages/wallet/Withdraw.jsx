@@ -103,7 +103,7 @@ const Withdraw = () => {
 			setShowModal(true);
 			setConfirmPin(false);
 			toast.success('Point sent successfully');
-		}, [400]);
+		}, [600]);
 	};
 
 	const handleConfirmPin = () => {
@@ -173,7 +173,7 @@ const Withdraw = () => {
 							You are about to send {amount}&#8358; to {walletName}
 						</p>
 						<button
-							className="bg-green-500 px-8 text-white py-2 mt-2 mx-2 hover:bg-green-400 rounded-md mx-auto"
+							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md mx-auto"
 							onClick={handlePayment}
 						>
 							Confirm
@@ -218,20 +218,19 @@ const Withdraw = () => {
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
 					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md relative">
 						<HiXCircle
-							onClick={() => handleCloseModal()}
+							onClick={() => setShowModal(false)}
 							className="h-6 w-6 text-red-400 hover:text-red-500 absolute right-2 z-10 top-2 cursor-pointer"
 						/>
 						<div className="text-yellow-300">
 							<ion-icon name="happy" size="large"></ion-icon>
 						</div>
 						<p className="p-2">Payment sucessfull</p>
-						<a
-							href="/sendpoint"
-							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md"
+						<button
+							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md  w-10/12 mx-auto"
 							onClick={() => handleCloseModal()}
 						>
 							Ok
-						</a>
+						</button>
 					</div>
 				</div>
 			) : (
