@@ -111,10 +111,14 @@ const Withdraw = () => {
 		setPin('');
 		toast.dismiss();
 	};
-	// const handleClosePin = () => {
-	// 	setConfirmPin(false);
-	// 	toast.dismiss();
-	// };
+	const handleCloseModal = () => {
+		setShowModal(false);
+		setPin('');
+		setWalletNumber('');
+		setWalletName('');
+		setAmount('');
+		toast.dismiss();
+	};
 	return (
 		<div className="p-1 mt-8 mx-2 py-10 min-h-screen relative">
 			<h3 className="text-center text-xl md:text-2xl font-semibold m-4 mt-6 z-20 relative w-8/12 mx-auto text-green-500">
@@ -159,7 +163,7 @@ const Withdraw = () => {
 			</form>
 			{confirmPayment ? (
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
-					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md">
+					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md relative">
 						<h5 className="font-semibold text-lg mt-2">Confirm payment</h5>
 						<HiXCircle
 							onClick={() => setConfirmPayment(false)}
@@ -169,7 +173,7 @@ const Withdraw = () => {
 							You are about to send {amount}&#8358; to {walletName}
 						</p>
 						<button
-							className="bg-green-500 px-8 text-white py-2 mt-2 mx-2 hover:bg-green-400 rounded-md"
+							className="bg-green-500 px-8 text-white py-2 mt-2 mx-2 hover:bg-green-400 rounded-md mx-auto"
 							onClick={handlePayment}
 						>
 							Confirm
@@ -212,9 +216,9 @@ const Withdraw = () => {
 			)}
 			{showModal ? (
 				<div className="absolute w-full h-full top-0 flex place-items-center duration-500">
-					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md">
+					<div className="text-center text-lg bg-green-50 w-11/12 md:max-w-md p-4 mx-auto rounded-md shadow-md relative">
 						<HiXCircle
-							onClick={() => showModal(false)}
+							onClick={() => handleCloseModal()}
 							className="h-6 w-6 text-red-400 hover:text-red-500 absolute right-2 top-2 z-10 cursor-pointer"
 						/>
 						<div className="text-yellow-300">
@@ -224,7 +228,7 @@ const Withdraw = () => {
 						<a
 							href="/sendpoint"
 							className="bg-green-500 px-8 text-white py-2 mt-2 hover:bg-green-400 rounded-md"
-							onClick={() => showModal(false)}
+							onClick={() => handleCloseModal()}
 						>
 							Ok
 						</a>
