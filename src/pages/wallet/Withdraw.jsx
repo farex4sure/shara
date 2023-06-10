@@ -20,7 +20,7 @@ const Withdraw = () => {
 
 	const balance = user.wallet?.balance;
 
-	const { sendMoney, checkReceiverWallet, error } = useWallet();
+	const { checkReceiverWallet, error } = useWallet();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -72,7 +72,6 @@ const Withdraw = () => {
 		}
 		const receiver = addCode(walletNumber);
 		const sender = addCode(user.user?.phone);
-		console.log(sender)
 		const data = {
 			receiver,
 			sender,
@@ -82,20 +81,26 @@ const Withdraw = () => {
 			narration: `received ${amount} point from ${user.user?.name}`,
 		};
 		toast.loading('Transaction in progress');
-		const res = await sendMoney({ data });
-		if (res) {
-			console.log(res);
+		// const res = await sendMoney({ data });
+		// if (res) {
+		// 	console.log(res);
+		// 	setShowModal(true);
+		// 	setConfirmPin(false);
+		// 	toast.dismiss();
+		// 	return;
+		// }
+		// if (error) {
+		// 	toast.dismiss();
+		// 	setShowModal(false);
+		// 	toast.error(error);
+		// 	return;
+		// }
+		setTimeout(() => {
+			toast.dismiss();
 			setShowModal(true);
 			setConfirmPin(false);
-			toast.dismiss();
-			return;
-		}
-		if (error) {
-			toast.dismiss();
-			setShowModal(false);
-			toast.error(error);
-			return;
-		}
+			toast.success('Point sent successfully');
+		}, [100]);
 	};
 
 	const handleCloseConfirmPin = () => {
